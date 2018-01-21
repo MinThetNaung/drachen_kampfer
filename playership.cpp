@@ -25,7 +25,9 @@ Ship::Ship() : Entity()
     radius = shipNS::WIDTH/2.0;
     shieldOn = false;
     mass = shipNS::MASS;
-    collisionType = entityNS::CIRCLE;
+    collisionType = entityNS::ROTATED_BOX;
+
+
 }
 
 //=============================================================================

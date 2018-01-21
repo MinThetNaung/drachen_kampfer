@@ -36,9 +36,6 @@
     <ClCompile Include="planet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spacewar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="winmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="playership.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
