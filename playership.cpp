@@ -63,25 +63,49 @@ void Ship::update(float frameTime)
 {
     Entity::update(frameTime);
       // rotate the ship
-    spriteData.x += frameTime * velocity.x;         // move ship along X 
-    spriteData.y += frameTime * velocity.y;         // move ship along Y
+	//velocity.y = sin(spriteData.angle)*velocity.y;
+	//velocity.x = cos(spriteData.angle)*velocity.x;
+    spriteData.x += frameTime *velocity.x;         // move ship along X 
+    spriteData.y += frameTime *velocity.y;         // move ship along Y
 
 
 	if (input->isKeyDown(VK_RIGHT))           // if move right
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
+		velocity.y = sin(spriteData.angle)*velocity.y;
+		velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_LEFT))           // if move left
 	{
 		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
+		velocity.y = sin(spriteData.angle)*velocity.y;
+		velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_UP))           // if move up
 	{
-		velocity.y += shipNS::SPEED;
+		velocity.y += sin(spriteData.angle)*shipNS::SPEED;
+		velocity.x += cos(spriteData.angle)*shipNS::SPEED;
+		if (velocity.y > shipNS::MAXSPEED)
+		{
+			velocity.y = shipNS::MAXSPEED;
+		}
+		if (velocity.x > shipNS::MAXSPEED)
+		{
+			velocity.x = shipNS::MAXSPEED;
+		}
 	}
 	else if (input->isKeyDown(VK_DOWN))           // if move down
 	{
-		velocity.y -= shipNS::SPEED;
+		velocity.y -= sin(spriteData.angle)*shipNS::SPEED;
+		velocity.x -= cos(spriteData.angle)*shipNS::SPEED;
+		if (velocity.y < shipNS::MINSPEED)
+		{
+			velocity.y = shipNS::MINSPEED;
+		}
+		if (velocity.x < shipNS::MINSPEED)
+		{
+			velocity.x = shipNS::MINSPEED;
+		}
 	}
 
 
