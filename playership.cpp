@@ -3,7 +3,7 @@
 // Charles Kelly
 // Chapter 6 ship.cpp v1.0
 
-#include "ship.h"
+#include "playership.h"
 
 //=============================================================================
 // default constructor
@@ -23,11 +23,9 @@ Ship::Ship() : Entity()
     endFrame     = shipNS::SHIP1_END_FRAME;     // last frame of ship animation
     currentFrame = startFrame;
     radius = shipNS::WIDTH/2.0;
-    shieldOn = false;
+    //shieldOn = false;
     mass = shipNS::MASS;
     collisionType = entityNS::ROTATED_BOX;
-
-
 }
 
 //=============================================================================
@@ -37,11 +35,11 @@ Ship::Ship() : Entity()
 bool Ship::initialize(Game *gamePtr, int width, int height, int ncols,
     TextureManager *textureM)
 {
-    shield.initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
+    /*shield.initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
     shield.setFrames(shipNS::SHIELD_START_FRAME, shipNS::SHIELD_END_FRAME);
     shield.setCurrentFrame(shipNS::SHIELD_START_FRAME);
     shield.setFrameDelay(shipNS::SHIELD_ANIMATION_DELAY);
-    shield.setLoop(false);                  // do not loop animation
+    shield.setLoop(false);                  // do not loop animation*/
     return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
@@ -51,9 +49,9 @@ bool Ship::initialize(Game *gamePtr, int width, int height, int ncols,
 void Ship::draw()
 {
     Image::draw();              // draw ship
-    if(shieldOn)
+    //if(shieldOn)
         // draw shield using colorFilter 50% alpha
-        shield.draw(spriteData, graphicsNS::ALPHA50 & colorFilter);
+        //shield.draw(spriteData, graphicsNS::ALPHA50 & colorFilter);
 }
 
 //=============================================================================
@@ -64,30 +62,51 @@ void Ship::draw()
 void Ship::update(float frameTime)
 {
     Entity::update(frameTime);
-    spriteData.angle += frameTime * shipNS::ROTATION_RATE;  // rotate the ship
+      // rotate the ship
     spriteData.x += frameTime * velocity.x;         // move ship along X 
     spriteData.y += frameTime * velocity.y;         // move ship along Y
+
+
+	if (input->isKeyDown(VK_RIGHT))           // if move right
+	{
+		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
+	}
+	else if (input->isKeyDown(VK_LEFT))           // if move left
+	{
+		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
+	}
+	else if (input->isKeyDown(VK_UP))           // if move up
+	{
+		velocity.y += shipNS::SPEED;
+	}
+	else if (input->isKeyDown(VK_DOWN))           // if move down
+	{
+		velocity.y -= shipNS::SPEED;
+	}
+
+
+
 
     // Bounce off walls
     if (spriteData.x > GAME_WIDTH-shipNS::WIDTH)    // if hit right screen edge
     {
         spriteData.x = GAME_WIDTH-shipNS::WIDTH;    // position at right screen edge
-        velocity.x = -velocity.x;                   // reverse X direction
+        velocity.x = 0;                   // reverse X direction
     } else if (spriteData.x < 0)                    // else if hit left screen edge
     {
         spriteData.x = 0;                           // position at left screen edge
-        velocity.x = -velocity.x;                   // reverse X direction
+        velocity.x = 0;                   // reverse X direction
     }
     if (spriteData.y > GAME_HEIGHT-shipNS::HEIGHT)  // if hit bottom screen edge
     {
         spriteData.y = GAME_HEIGHT-shipNS::HEIGHT;  // position at bottom screen edge
-        velocity.y = -velocity.y;                   // reverse Y direction
+        velocity.y = 0;                   // reverse Y direction
     } else if (spriteData.y < 0)                    // else if hit top screen edge
     {
         spriteData.y = 0;                           // position at top screen edge
-        velocity.y = -velocity.y;                   // reverse Y direction
+        velocity.y = 0;                   // reverse Y direction
     }
-    if(shieldOn)
+    /*if(shieldOn)
     {
         shield.update(frameTime);
         if(shield.getAnimationComplete())
@@ -95,14 +114,14 @@ void Ship::update(float frameTime)
             shieldOn = false;
             shield.setAnimationComplete(false);
         }
-    }
+    }*/
 }
 
 //=============================================================================
 // damage
 //=============================================================================
-void Ship::damage(WEAPON weapon)
-{
-    shieldOn = true;
-}
+//void Ship::damage(WEAPON weapon)
+//{
+    //shieldOn = true;
+//}
 

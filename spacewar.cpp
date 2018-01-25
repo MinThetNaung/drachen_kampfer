@@ -54,13 +54,7 @@ void Spacewar::initialize(HWND hwnd)
     ship1.setY(GAME_HEIGHT/4);
     ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
     // ship2
-    if (!ship2.initialize(this, shipNS::WIDTH, shipNS::HEIGHT, shipNS::TEXTURE_COLS, &gameTextures))
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ship2"));
-    ship2.setFrames(shipNS::SHIP2_START_FRAME, shipNS::SHIP2_END_FRAME);
-    ship2.setCurrentFrame(shipNS::SHIP2_START_FRAME);
-    ship2.setX(GAME_WIDTH - GAME_WIDTH/4);
-    ship2.setY(GAME_HEIGHT/4);
-    ship2.setVelocity(VECTOR2(-shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
+    
 
     return;
 }
@@ -72,7 +66,6 @@ void Spacewar::update()
 {
     planet.update(frameTime);
     ship1.update(frameTime);
-    ship2.update(frameTime);
 }
 
 //=============================================================================
@@ -94,14 +87,9 @@ void Spacewar::collisions()
         ship1.bounce(collisionVector, planet);
         ship1.damage(PLANET);
     }
-    if(ship2.collidesWith(planet, collisionVector))
-    {
-        // bounce off planet
-        ship2.bounce(collisionVector, planet);
-        ship2.damage(PLANET);
-    }
+    
     // if collision between ships
-    if(ship1.collidesWith(ship2, collisionVector))
+    /*if(ship1.collidesWith(ship2, collisionVector))
     {
         // bounce off ship
         ship1.bounce(collisionVector, ship2);
@@ -109,7 +97,7 @@ void Spacewar::collisions()
         // change the direction of the collisionVector for ship2
         ship2.bounce(collisionVector*-1, ship1);
         ship2.damage(SHIP);
-    }
+    }*/
 }
 
 //=============================================================================

@@ -141,9 +141,10 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="Movementcomponent.h" />
     <ClInclude Include="planet.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ship.h" />
+    <ClInclude Include="playership.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>

@@ -11,7 +11,7 @@
 #include "textureManager.h"
 #include "image.h"
 #include "planet.h"
-#include "ship.h"
+#include "playership.h"
 
 //=============================================================================
 // This class is the core of the game

@@ -9,15 +9,16 @@
 
 #include "entity.h"
 #include "constants.h"
-
+#include "Movementcomponent.h"
+;
 namespace shipNS
 {
     const int WIDTH = 32;                   // image width
     const int HEIGHT = 32;                  // image height
     const int X = GAME_WIDTH/2 - WIDTH/2;   // location on screen
     const int Y = GAME_HEIGHT/2 - HEIGHT/2;
-    const float ROTATION_RATE = (float)PI/4; // radians per second
-    const float SPEED = 100;                // 100 pixels per second
+    const float ROTATION_RATE = (float)PI; // radians per second
+    const float SPEED = 10;                // 100 pixels per second
     const float MASS = 300.0f;              // mass
     const int   TEXTURE_COLS = 8;           // texture has 8 columns
     const int   SHIP1_START_FRAME = 0;      // ship1 starts at frame 0
@@ -34,8 +35,9 @@ namespace shipNS
 class Ship : public Entity
 {
 private:
-    bool    shieldOn;
-    Image   shield;
+	MovementComponent *movecomponent;
+    //bool    shieldOn;
+    //Image   shield;
 public:
     // constructor
     Ship();
@@ -45,7 +47,7 @@ public:
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
                             TextureManager *textureM);
     void update(float frameTime);
-    void damage(WEAPON);
+    //void damage(WEAPON);
 };
 #endif
 
