@@ -72,14 +72,14 @@ void Ship::update(float frameTime)
 	if (input->isKeyDown(VK_RIGHT))           // if move right
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
-		velocity.y = sin(spriteData.angle)*velocity.y;
-		velocity.x = cos(spriteData.angle)*velocity.x;
+		//velocity.y = sin(spriteData.angle)*velocity.y;
+		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_LEFT))           // if move left
 	{
 		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
-		velocity.y = sin(spriteData.angle)*velocity.y;
-		velocity.x = cos(spriteData.angle)*velocity.x;
+		//velocity.y = sin(spriteData.angle)*velocity.y;
+		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_UP))           // if move up
 	{
