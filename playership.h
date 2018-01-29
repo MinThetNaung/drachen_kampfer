@@ -10,6 +10,7 @@
 #include "entity.h"
 #include "constants.h"
 #include "Movementcomponent.h"
+#include "Healthcomponent.h"
 ;
 namespace shipNS
 {
@@ -37,7 +38,9 @@ namespace shipNS
 class Ship : public Entity
 {
 private:
-	MovementComponent *movecomponent;
+	MovementComponent movecomponent;
+	HealthComponent healthcomponent;
+	int regencount = 0;
     //bool    shieldOn;
     //Image   shield;
 public:
