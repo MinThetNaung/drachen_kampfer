@@ -16,6 +16,8 @@ class Attack : public Entity
 {
 private:
 	float Damage;
+	float Speed;
+	bool reflected;
 public:
 	// constructor
 	Attack();
