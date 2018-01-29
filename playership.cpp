@@ -10,6 +10,7 @@
 //=============================================================================
 playership::playership() : Entity()
 {
+	spriteData.scale = 0.5;
     spriteData.width = shipNS::WIDTH;           // size of Ship1
     spriteData.height = shipNS::HEIGHT;
     spriteData.x = shipNS::X;                   // location on screen
@@ -28,7 +29,7 @@ playership::playership() : Entity()
     collisionType = entityNS::ROTATED_BOX;
 	healthcomponent.setmhealth(5);
 	healthcomponent.setchealth(healthcomponent.getmhealth());
-	spriteData.scale = 0.5;
+	
 }
 
 //=============================================================================
@@ -128,18 +129,18 @@ void playership::update(float frameTime)
 
 
     // Bounce off walls
-    if (spriteData.x > GAME_WIDTH-shipNS::WIDTH)    // if hit right screen edge
+    if (spriteData.x > GAME_WIDTH-spriteData.width*spriteData.scale)    // if hit right screen edge
     {
-        spriteData.x = GAME_WIDTH-shipNS::WIDTH;    // position at right screen edge
+        spriteData.x = GAME_WIDTH- spriteData.width*spriteData.scale;    // position at right screen edge
        // velocity.x = 0;                   // reverse X direction
     } else if (spriteData.x < 0)                    // else if hit left screen edge
     {
         spriteData.x = 0;                           // position at left screen edge
       //  velocity.x = 0;                   // reverse X direction
     }
-    if (spriteData.y > GAME_HEIGHT-shipNS::HEIGHT)  // if hit bottom screen edge
+    if (spriteData.y > GAME_HEIGHT- spriteData.height*spriteData.scale)  // if hit bottom screen edge
     {
-        spriteData.y = GAME_HEIGHT-shipNS::HEIGHT;  // position at bottom screen edge
+        spriteData.y = GAME_HEIGHT- spriteData.height*spriteData.scale;  // position at bottom screen edge
       //  velocity.y = 0;                   // reverse Y direction
     } else if (spriteData.y < 0)                    // else if hit top screen edge
     {
