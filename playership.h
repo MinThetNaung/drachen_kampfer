@@ -3,8 +3,8 @@
 // Charles Kelly
 // Chapter 6 ship.h v1.0
 
-#ifndef _SHIP_H                 // Prevent multiple definitions if this 
-#define _SHIP_H                 // file is included in more than one place
+#ifndef _PLAYERSHIP_H                 // Prevent multiple definitions if this 
+#define _PLAYERSHIP_H                 // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
 #include "entity.h"
@@ -16,8 +16,8 @@
 using namespace std;
 namespace shipNS
 {
-    const int WIDTH = 32;                   // image width
-    const int HEIGHT = 32;                  // image height
+    const int WIDTH = 320;                   // image width
+    const int HEIGHT = 320;                  // image height
     const int X = GAME_WIDTH/2 - WIDTH/2;   // location on screen
     const int Y = GAME_HEIGHT/2 - HEIGHT/2;
     const float ROTATION_RATE = (float)2*PI; // radians per second
@@ -25,7 +25,7 @@ namespace shipNS
 	const float MAXSPEED = 50;
 	const float MINSPEED = -50;
     const float MASS = 300.0f;              // mass
-    const int   TEXTURE_COLS = 8;           // texture has 8 columns
+    const int   TEXTURE_COLS = 1;           // texture has 8 columns
     const int   SHIP1_START_FRAME = 0;      // ship1 starts at frame 0
     const int   SHIP1_END_FRAME = 3;        // ship1 animation frames 0,1,2,3
     const int   SHIP2_START_FRAME = 8;      // ship2 starts at frame 8
@@ -34,10 +34,11 @@ namespace shipNS
     const int   SHIELD_START_FRAME = 24;    // shield start frame
     const int   SHIELD_END_FRAME = 27;      // shield end frame
     const float SHIELD_ANIMATION_DELAY = 0.1f; // time between frames
+	
 }
 
 // inherits from Entity class
-class Ship : public Entity
+class playership : public Entity
 {
 private:
 	MovementComponent movecomponent;
@@ -48,7 +49,7 @@ private:
     //Image   shield;
 public:
     // constructor
-    Ship();
+	playership();
 
     // inherited member functions
     virtual void draw();

@@ -22,7 +22,8 @@ private:
     // game items
     TextureManager nebulaTexture;   // nebula texture
     TextureManager gameTextures;    // game texture
-    Ship    ship1, ship2;           // spaceships
+	TextureManager playershipTextures;
+    playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 

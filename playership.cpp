@@ -8,7 +8,7 @@
 //=============================================================================
 // default constructor
 //=============================================================================
-Ship::Ship() : Entity()
+playership::playership() : Entity()
 {
     spriteData.width = shipNS::WIDTH;           // size of Ship1
     spriteData.height = shipNS::HEIGHT;
@@ -19,8 +19,8 @@ Ship::Ship() : Entity()
     velocity.x = 0;                             // velocity X
     velocity.y = 0;                             // velocity Y
     frameDelay = shipNS::SHIP_ANIMATION_DELAY;
-    startFrame = shipNS::SHIP1_START_FRAME;     // first frame of ship animation
-    endFrame     = shipNS::SHIP1_END_FRAME;     // last frame of ship animation
+    //startFrame = shipNS::SHIP1_START_FRAME;     // first frame of ship animation
+    //endFrame     = shipNS::SHIP1_END_FRAME;     // last frame of ship animation
     currentFrame = startFrame;
     radius = shipNS::WIDTH/2.0;
     //shieldOn = false;
@@ -28,13 +28,14 @@ Ship::Ship() : Entity()
     collisionType = entityNS::ROTATED_BOX;
 	healthcomponent.setmhealth(5);
 	healthcomponent.setchealth(healthcomponent.getmhealth());
+	spriteData.scale = 0.5;
 }
 
 //=============================================================================
 // Initialize the Ship.
 // Post: returns true if successful, false if failed
 //=============================================================================
-bool Ship::initialize(Game *gamePtr, int width, int height, int ncols,
+bool playership::initialize(Game *gamePtr, int width, int height, int ncols,
     TextureManager *textureM)
 {
     /*shield.initialize(gamePtr->getGraphics(), width, height, ncols, textureM);
@@ -48,7 +49,7 @@ bool Ship::initialize(Game *gamePtr, int width, int height, int ncols,
 //=============================================================================
 // draw the ship
 //=============================================================================
-void Ship::draw()
+void playership::draw()
 {
     Image::draw();              // draw ship
     //if(shieldOn)
@@ -61,7 +62,7 @@ void Ship::draw()
 // typically called once per frame
 // frameTime is used to regulate the speed of movement and animation
 //=============================================================================
-void Ship::update(float frameTime)
+void playership::update(float frameTime)
 {
     Entity::update(frameTime);
 	healthcomponent.update();
