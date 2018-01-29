@@ -77,7 +77,10 @@ void Ship::update(float frameTime)
 		
 	}
 
-
+	if (input->isKeyDown('i'))           // if move right
+	{
+		
+	}
 	if (input->isKeyDown(VK_RIGHT))           // if move right
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;

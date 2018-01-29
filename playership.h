@@ -11,7 +11,9 @@
 #include "constants.h"
 #include "Movementcomponent.h"
 #include "Healthcomponent.h"
-;
+#include "Bullet.h"
+
+using namespace std;
 namespace shipNS
 {
     const int WIDTH = 32;                   // image width
@@ -41,6 +43,7 @@ private:
 	MovementComponent movecomponent;
 	HealthComponent healthcomponent;
 	int regencount = 0;
+	vector<Bullet>bulletv = {};
     //bool    shieldOn;
     //Image   shield;
 public:

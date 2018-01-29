@@ -8,7 +8,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
-
+#include <vector>
 //-----------------------------------------------
 // Useful macros
 //-----------------------------------------------
@@ -48,6 +48,7 @@ const float MASS_SHIP = 5.0f;
 // graphic images
 const char NEBULA_IMAGE[] =   "pictures\\orion.jpg";     // photo source NASA/courtesy of nasaimages.org 
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
+const char SHIP_IMAGE[] = "pictures\\ship.png";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
