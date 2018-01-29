@@ -123,11 +123,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
-    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="Healthcomponent.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="planet.cpp" />
@@ -143,7 +141,6 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="graphics.h" />
-    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Healthcomponent.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
