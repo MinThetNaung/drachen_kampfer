@@ -10,6 +10,7 @@
 #include "entity.h"
 #include "constants.h"
 #include "Movementcomponent.h"
+#include "Healthcomponent.h"
 ;
 namespace shipNS
 {
@@ -17,8 +18,10 @@ namespace shipNS
     const int HEIGHT = 32;                  // image height
     const int X = GAME_WIDTH/2 - WIDTH/2;   // location on screen
     const int Y = GAME_HEIGHT/2 - HEIGHT/2;
-    const float ROTATION_RATE = (float)PI; // radians per second
+    const float ROTATION_RATE = (float)2*PI; // radians per second
     const float SPEED = 10;                // 100 pixels per second
+	const float MAXSPEED = 50;
+	const float MINSPEED = -50;
     const float MASS = 300.0f;              // mass
     const int   TEXTURE_COLS = 8;           // texture has 8 columns
     const int   SHIP1_START_FRAME = 0;      // ship1 starts at frame 0
@@ -35,7 +38,9 @@ namespace shipNS
 class Ship : public Entity
 {
 private:
-	MovementComponent *movecomponent;
+	MovementComponent movecomponent;
+	HealthComponent healthcomponent;
+	int regencount = 0;
     //bool    shieldOn;
     //Image   shield;
 public:

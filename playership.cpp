@@ -26,6 +26,8 @@ Ship::Ship() : Entity()
     //shieldOn = false;
     mass = shipNS::MASS;
     collisionType = entityNS::ROTATED_BOX;
+	healthcomponent.setmhealth(5);
+	healthcomponent.setchealth(healthcomponent.getmhealth());
 }
 
 //=============================================================================
@@ -62,49 +64,83 @@ void Ship::draw()
 void Ship::update(float frameTime)
 {
     Entity::update(frameTime);
+	healthcomponent.update();
       // rotate the ship
-    spriteData.x += frameTime * velocity.x;         // move ship along X 
-    spriteData.y += frameTime * velocity.y;         // move ship along Y
+	if (healthcomponent.getchealth() <= healthcomponent.getmhealth())
+	{
+		regencount++;
+		if (regencount >= 600)
+		{
+			healthcomponent.setchealth(healthcomponent.getchealth() + 1);
+			regencount = 0;
+		}
+		
+	}
 
 
 	if (input->isKeyDown(VK_RIGHT))           // if move right
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
+		//velocity.y = sin(spriteData.angle)*velocity.y;
+		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_LEFT))           // if move left
 	{
 		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
+		//velocity.y = sin(spriteData.angle)*velocity.y;
+		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_UP))           // if move up
 	{
-		velocity.y += shipNS::SPEED;
+
+		velocity.y += sin(spriteData.angle)*shipNS::SPEED;
+		velocity.x += cos(spriteData.angle)*shipNS::SPEED;
+	    if (velocity.y > shipNS::MAXSPEED)
+		{
+			velocity.y = shipNS::MAXSPEED;
+		}
+		if (velocity.x > shipNS::MAXSPEED)
+		{
+			velocity.x = shipNS::MAXSPEED;
+		}
 	}
 	else if (input->isKeyDown(VK_DOWN))           // if move down
 	{
-		velocity.y -= shipNS::SPEED;
+		velocity.y -= sin(spriteData.angle)*shipNS::SPEED;
+		velocity.x -= cos(spriteData.angle)*shipNS::SPEED;
+	if (velocity.y < shipNS::MINSPEED)
+		{
+			velocity.y = shipNS::MINSPEED;
+		}
+		if (velocity.x < shipNS::MINSPEED)
+		{
+			velocity.x = shipNS::MINSPEED;
+		}
 	}
 
 
+	spriteData.x += frameTime *velocity.x;         // move ship along X 
+	spriteData.y += frameTime *velocity.y;         // move ship along Y
 
 
     // Bounce off walls
     if (spriteData.x > GAME_WIDTH-shipNS::WIDTH)    // if hit right screen edge
     {
         spriteData.x = GAME_WIDTH-shipNS::WIDTH;    // position at right screen edge
-        velocity.x = 0;                   // reverse X direction
+       // velocity.x = 0;                   // reverse X direction
     } else if (spriteData.x < 0)                    // else if hit left screen edge
     {
         spriteData.x = 0;                           // position at left screen edge
-        velocity.x = 0;                   // reverse X direction
+      //  velocity.x = 0;                   // reverse X direction
     }
     if (spriteData.y > GAME_HEIGHT-shipNS::HEIGHT)  // if hit bottom screen edge
     {
         spriteData.y = GAME_HEIGHT-shipNS::HEIGHT;  // position at bottom screen edge
-        velocity.y = 0;                   // reverse Y direction
+      //  velocity.y = 0;                   // reverse Y direction
     } else if (spriteData.y < 0)                    // else if hit top screen edge
     {
         spriteData.y = 0;                           // position at top screen edge
-        velocity.y = 0;                   // reverse Y direction
+      //  velocity.y = 0;                   // reverse Y direction
     }
     /*if(shieldOn)
     {

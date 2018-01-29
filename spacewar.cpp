@@ -42,8 +42,8 @@ void Spacewar::initialize(HWND hwnd)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula"));
 
     // planet
-    if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
+    //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
+        //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
 
     // ship
     if (!ship1.initialize(this, shipNS::WIDTH, shipNS::HEIGHT, shipNS::TEXTURE_COLS, &gameTextures))
@@ -52,7 +52,7 @@ void Spacewar::initialize(HWND hwnd)
     ship1.setCurrentFrame(shipNS::SHIP1_START_FRAME);
     ship1.setX(GAME_WIDTH/4);
     ship1.setY(GAME_HEIGHT/4);
-    ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
+    //ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
     // ship2
     
 
@@ -81,12 +81,12 @@ void Spacewar::collisions()
 {
     VECTOR2 collisionVector;
     // if collision between ship and planet
-    if(ship1.collidesWith(planet, collisionVector))
+    /*if(ship1.collidesWith(planet, collisionVector))
     {
         // bounce off planet
         ship1.bounce(collisionVector, planet);
         ship1.damage(PLANET);
-    }
+    }*/
     
     // if collision between ships
     /*if(ship1.collidesWith(ship2, collisionVector))
