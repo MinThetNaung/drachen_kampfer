@@ -17,7 +17,7 @@ class Attack : public Entity
 private:
 	float Damage;
 	float Speed;
-	bool reflected;
+	bool reflectable;
 public:
 	// constructor
 	Attack();
@@ -29,4 +29,5 @@ public:
 	void update(float frameTime);
 	void damage(WEAPON);
 	float setdamage(float d); // set the starting damage
+	float setSpeed(float s);
 };

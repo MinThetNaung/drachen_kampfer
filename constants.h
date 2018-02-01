@@ -49,6 +49,7 @@ const float MASS_SHIP = 5.0f;
 const char BACKGROUND_IMAGE[] =   "pictures\\bg_version1.png";     // photo source NASA/courtesy of nasaimages.org 
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
 const char SHIP_IMAGE[] = "pictures\\ship.png";
+const char BULLET_IMAGE[] = "pictures\\bullet.png";
 const char ENEMY_IMAGE[] = "pictures\\enemy1.png";
 
 // key mappings

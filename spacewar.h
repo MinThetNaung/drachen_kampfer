@@ -24,6 +24,7 @@ private:
     TextureManager backgroundTexture;   // Background texture
     TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
+	TextureManager bulletTextures;
 	TextureManager enemyTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet

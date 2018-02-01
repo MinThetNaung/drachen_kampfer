@@ -20,6 +20,11 @@ float Attack::setdamage(float d)
 	Damage = d;
 	return Damage;
 }
+float Attack::setSpeed(float s)
+{
+	Speed = s;
+	return Speed;
+}
 void Attack::update(float frameTime)
 {
 	Entity::update(frameTime);
