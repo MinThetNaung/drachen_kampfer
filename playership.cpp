@@ -44,6 +44,8 @@ bool playership::initialize(Game *gamePtr, int width, int height, int ncols,
     shield.setCurrentFrame(shipNS::SHIELD_START_FRAME);
     shield.setFrameDelay(shipNS::SHIELD_ANIMATION_DELAY);
     shield.setLoop(false);                  // do not loop animation*/
+	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
     return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
@@ -52,6 +54,7 @@ bool playership::initialize(Game *gamePtr, int width, int height, int ncols,
 //=============================================================================
 void playership::draw()
 {
+	bullet.draw();
     Image::draw();              // draw ship
     //if(shieldOn)
         // draw shield using colorFilter 50% alpha
@@ -63,7 +66,7 @@ void playership::draw()
 // typically called once per frame
 // frameTime is used to regulate the speed of movement and animation
 //=============================================================================
-void playership::update(float frameTime)
+void playership::update(float frameTime, Game* gameptr)
 {
     Entity::update(frameTime);
 	healthcomponent.update();
@@ -82,6 +85,14 @@ void playership::update(float frameTime)
 	if (input->isKeyDown('i'))           // if move right
 	{
 		
+		if (!bullet.initialize(gameptr, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
+		bullet.setX(spriteData.x);
+		bullet.setY(spriteData.y);
+		bullet.setdamage(2);
+		bullet.setSpeed(100);
+		bulletv.push_back(bullet);
 	}
 	if (input->isKeyDown(VK_RIGHT))           // if move right
 	{

@@ -44,6 +44,8 @@ private:
 	MovementComponent movecomponent;
 	HealthComponent healthcomponent;
 	int regencount = 0;
+	TextureManager bulletTextures;
+	Bullet bullet;
 	vector<Bullet>bulletv = {};
     //bool    shieldOn;
     //Image   shield;
@@ -55,7 +57,7 @@ public:
     virtual void draw();
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
                             TextureManager *textureM);
-    void update(float frameTime);
+    void update(float frameTime, Game* gameptr);
     //void damage(WEAPON);
 };
 #endif

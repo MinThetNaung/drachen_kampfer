@@ -23,6 +23,7 @@ private:
     TextureManager nebulaTexture;   // nebula texture
     TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
+	TextureManager bulletTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
