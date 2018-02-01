@@ -88,18 +88,26 @@ void Spacewar::update()
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
 	enemy.update(frameTime);
-	if (input->isKeyDown('i'))           // if move right
+	//Player skills
+	if (input->isKeyDown(VK_KEY_I))  //I         // if move right FSM forward declaration
 	{
 
 		if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
 		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
-		bullet.setX(playership1.getX);
-		bullet.setY(playership1.getY);
+		bullet.setX(playership1.getX());
+		bullet.setY(playership1.getY());
 		bullet.setdamage(2);
 		bullet.setSpeed(100);
+		bullet.setRadians(playership1.getRadians());
 		bullet.isreflectable(true);
 		Pbulletv.push_back(bullet);
+	}
+	//Player skills
+	for (unsigned d = 0; d < Pbulletv.size(); d++)
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		tempbullet.update(frameTime);
 	}
 }
 
@@ -115,7 +123,18 @@ void Spacewar::ai()
 void Spacewar::collisions()
 {
 	
-    VECTOR2 collisionVector;
+	VECTOR2 collisionVector;
+	for (unsigned d = 0; d < Pbulletv.size(); d++) 
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		Bullet *tmpBulletPointer = &tempbullet;
+		if (bullet.collidesWith(enemy, collisionVector))
+		{
+				// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
+			Pbulletv.erase(Pbulletv.begin() + d);
+			tmpBulletPointer = NULL;
+		}
+	}
     // if collision between ship and planet
     /*if(ship1.collidesWith(planet, collisionVector))
     {
@@ -147,6 +166,11 @@ void Spacewar::render()
     planet.draw();                          // add the planet to the scene
     playership1.draw();                           // add the spaceship to the scene
 	enemy.draw();
+	for (unsigned d = 0; d < Pbulletv.size(); d++)
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		tempbullet.draw();
+	}
     //ship2.draw();                           // add the spaceship to the scene
 
     graphics->spriteEnd();                  // end drawing sprites

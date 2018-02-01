@@ -17,6 +17,7 @@ namespace BulletNS
 class Bullet : public Attack
 {
 private:
+	
 	//bool    shieldOn;
 	//Image   shield;
 public:

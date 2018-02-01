@@ -52,7 +52,7 @@ bool playership::initialize(Game *gamePtr, int width, int height, int ncols,
 //=============================================================================
 void playership::draw()
 {
-	bullet.draw();
+
     Image::draw();              // draw ship
     //if(shieldOn)
         // draw shield using colorFilter 50% alpha
@@ -66,6 +66,7 @@ void playership::draw()
 //=============================================================================
 void playership::update(float frameTime, Game* gameptr)
 {
+	
     Entity::update(frameTime);
 	healthcomponent.update();
       // rotate the ship
@@ -80,24 +81,24 @@ void playership::update(float frameTime, Game* gameptr)
 		
 	}
 
-	if (input->isKeyDown('i'))           // if move right
+	if (input->isKeyDown(VK_KEY_I))           // if move right
 	{
 		
 
 	}
-	if (input->isKeyDown(VK_RIGHT))           // if move right front os 0
+	if (input->isKeyDown(VK_KEY_D))           // if move right front os 0
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
 		//velocity.y = sin(spriteData.angle)*velocity.y;
 		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
-	else if (input->isKeyDown(VK_LEFT))           // if move left
+	else if (input->isKeyDown(VK_KEY_A))           // if move left
 	{
 		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
 		//velocity.y = sin(spriteData.angle)*velocity.y;
 		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
-	else if (input->isKeyDown(VK_UP))           // if move up
+	else if (input->isKeyDown(VK_KEY_W))           // if move up
 	{
 
 		velocity.y += sin(spriteData.angle)*shipNS::SPEED;
@@ -111,7 +112,7 @@ void playership::update(float frameTime, Game* gameptr)
 			velocity.x = shipNS::MAXSPEED;
 		}
 	}
-	else if (input->isKeyDown(VK_DOWN))           // if move down
+	else if (input->isKeyDown(VK_KEY_S))           // if move down
 	{
 		velocity.y -= sin(spriteData.angle)*shipNS::SPEED;
 		velocity.x -= cos(spriteData.angle)*shipNS::SPEED;

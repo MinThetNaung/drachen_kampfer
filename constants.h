@@ -58,8 +58,11 @@ const char ENEMY_IMAGE[] = "pictures\\enemy2.png";
 const UCHAR ESC_KEY      = VK_ESCAPE;       // escape key
 const UCHAR ALT_KEY      = VK_MENU;         // Alt key
 const UCHAR ENTER_KEY    = VK_RETURN;       // Enter key
-
-
+#define VK_KEY_I	0x49                //('I')	I
+#define VK_KEY_W	0x57 
+#define VK_KEY_A	0x41 
+#define VK_KEY_S	0x53 
+#define VK_KEY_D	0x44 
 // weapon types
 enum WEAPON {TORPEDO, SHIP, PLANET};
 
