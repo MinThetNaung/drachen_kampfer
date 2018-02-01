@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="Attack.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
@@ -158,6 +160,7 @@
     <ResourceCompile Include="Drachen_kampfer.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="pictures\enemy1.png" />
     <Image Include="pictures\orion.jpg" />
     <Image Include="pictures\textures.png" />
   </ItemGroup>

@@ -57,6 +57,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -107,6 +110,9 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Drachen_kampfer.rc">
@@ -118,6 +124,9 @@
       <Filter>pictures</Filter>
     </Image>
     <Image Include="pictures\textures.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\enemy1.png">
       <Filter>pictures</Filter>
     </Image>
   </ItemGroup>
