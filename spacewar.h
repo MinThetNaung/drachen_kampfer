@@ -12,6 +12,7 @@
 #include "image.h"
 #include "planet.h"
 #include "playership.h"
+#include "enemy.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -20,13 +21,16 @@ class Spacewar : public Game
 {
 private:
     // game items
-    TextureManager nebulaTexture;   // nebula texture
+    TextureManager backgroundTexture;   // Background texture
     TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
 	TextureManager bulletTextures;
+	TextureManager enemyTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
+	Enemy enemy;
+    Image   background;         // backdrop image
 
 public:
     // Constructor

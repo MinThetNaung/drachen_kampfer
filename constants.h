@@ -32,8 +32,8 @@
 const char CLASS_NAME[] = "Drachen";
 const char GAME_TITLE[] = "Drachen";
 const bool FULLSCREEN = false;              // windowed or fullscreen
-const UINT GAME_WIDTH =  640;               // width of game in pixels
-const UINT GAME_HEIGHT = 480;               // height of game in pixels
+const UINT GAME_WIDTH =  1024;               // width of game in pixels
+const UINT GAME_HEIGHT = 768;               // height of game in pixels
 
 // game
 const double PI = 3.14159265;
@@ -46,10 +46,12 @@ const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 
 // graphic images
-const char NEBULA_IMAGE[] =   "pictures\\orion.jpg";     // photo source NASA/courtesy of nasaimages.org 
+const char BACKGROUND_IMAGE[] =   "pictures\\bg_version1.png";     // photo source NASA/courtesy of nasaimages.org 
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
 const char SHIP_IMAGE[] = "pictures\\ship.png";
 const char BULLET_IMAGE[] = "pictures\\bullet.png";
+const char ENEMY_IMAGE[] = "pictures\\enemy1.png";
+
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.
