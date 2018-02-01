@@ -16,8 +16,8 @@
 using namespace std;
 namespace shipNS
 {
-    const int WIDTH = 320;                   // image width
-    const int HEIGHT = 320;                  // image height
+    const int WIDTH = 160;                   // image width
+    const int HEIGHT = 160;                  // image height
     const int X = GAME_WIDTH/2 - WIDTH/2;   // location on screen
     const int Y = GAME_HEIGHT/2 - HEIGHT/2;
     const float ROTATION_RATE = (float)2*PI; // radians per second

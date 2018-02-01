@@ -50,6 +50,11 @@ void Spacewar::initialize(HWND hwnd)
 	if (!enemy.initialize(this, 0, 0, 0, &enemyTextures))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 
+	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
+	
+
+
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -83,7 +88,7 @@ void Spacewar::update()
 {
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
-	playership1.update(frameTime);
+	//playership1.update(frameTime);
 	enemy.update(frameTime);
 }
 
