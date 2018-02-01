@@ -50,7 +50,7 @@ const char BACKGROUND_IMAGE[] =   "pictures\\bg_version1.png";     // photo sour
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
 const char SHIP_IMAGE[] = "pictures\\ship.png";
 const char BULLET_IMAGE[] = "pictures\\bullet.png";
-const char ENEMY_IMAGE[] = "pictures\\enemy1.png";
+const char ENEMY_IMAGE[] = "pictures\\enemy2.png";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

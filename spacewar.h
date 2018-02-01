@@ -31,6 +31,14 @@ private:
     Image   nebula;         // backdrop image
 	Enemy enemy;
     Image   background;         // backdrop image
+	int cameraX;    // camera x position
+	int cameraY;     // camera y position
+
+	//camera size
+	int cameraWidth = 640; 
+	int cameraHeight = 480;
+
+
 
 public:
     // Constructor

@@ -6,6 +6,7 @@ using namespace enemyNS;
 //=============================================================================
 Enemy::Enemy() : Entity()
 {
+	spriteData.scale = 0.3;
 	spriteData.width = WIDTH;           // size of butterfly
 	spriteData.height = HEIGHT;
 	spriteData.x = X;                   // location on screen

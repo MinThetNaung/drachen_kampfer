@@ -44,9 +44,7 @@ bool playership::initialize(Game *gamePtr, int width, int height, int ncols,
     shield.setCurrentFrame(shipNS::SHIELD_START_FRAME);
     shield.setFrameDelay(shipNS::SHIELD_ANIMATION_DELAY);
     shield.setLoop(false);                  // do not loop animation*/
-	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
-    return(Entity::initialize(gamePtr, width, height, ncols, textureM));
+	return(Entity::initialize(gamePtr, width, height, ncols, textureM));
 }
 
 //=============================================================================

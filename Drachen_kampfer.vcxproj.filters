@@ -138,5 +138,8 @@
     <Image Include="pictures\orion.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="pictures\enemy2.png">
+      <Filter>pictures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
