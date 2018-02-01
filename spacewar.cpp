@@ -154,7 +154,7 @@ void Spacewar::releaseAll()
 void Spacewar::resetAll()
 {
     gameTextures.onResetDevice();
-    nebulaTexture.onResetDevice();
+   
 	enemyTextures.onResetDevice();
     backgroundTexture.onResetDevice();
     Game::resetAll();
