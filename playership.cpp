@@ -83,15 +83,7 @@ void playership::update(float frameTime, Game* gameptr)
 	if (input->isKeyDown('i'))           // if move right
 	{
 		
-		if (!bullet.initialize(gameptr, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
-		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
-		bullet.setX(spriteData.x);
-		bullet.setY(spriteData.y);
-		bullet.setdamage(2);
-		bullet.setSpeed(100);
-		bullet.isreflectable(true);
-		bulletv.push_back(bullet);
+
 	}
 	if (input->isKeyDown(VK_RIGHT))           // if move right front os 0
 	{

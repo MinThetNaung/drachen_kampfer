@@ -30,6 +30,9 @@ private:
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 	Enemy enemy;
+	Bullet bullet;
+	vector<Bullet>Pbulletv = {};
+	vector<Bullet>Ebulletv = {};
     Image   background;         // backdrop image
 	int cameraX;    // camera x position
 	int cameraY;     // camera y position

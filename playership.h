@@ -45,8 +45,7 @@ private:
 	HealthComponent healthcomponent;
 	int regencount = 0;
 	TextureManager bulletTextures;
-	Bullet bullet;
-	vector<Bullet>bulletv = {};
+
     //bool    shieldOn;
     //Image   shield;
 public:

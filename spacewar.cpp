@@ -54,7 +54,6 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
 	
 
-
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -89,6 +88,19 @@ void Spacewar::update()
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
 	enemy.update(frameTime);
+	if (input->isKeyDown('i'))           // if move right
+	{
+
+		if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
+		bullet.setX(playership1.getX);
+		bullet.setY(playership1.getY);
+		bullet.setdamage(2);
+		bullet.setSpeed(100);
+		bullet.isreflectable(true);
+		Pbulletv.push_back(bullet);
+	}
 }
 
 //=============================================================================
