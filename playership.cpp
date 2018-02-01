@@ -92,6 +92,7 @@ void playership::update(float frameTime, Game* gameptr)
 		bullet.setY(spriteData.y);
 		bullet.setdamage(2);
 		bullet.setSpeed(100);
+		bullet.isreflectable(true);
 		bulletv.push_back(bullet);
 	}
 	if (input->isKeyDown(VK_RIGHT))           // if move right

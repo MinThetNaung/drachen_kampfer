@@ -25,6 +25,11 @@ float Attack::setSpeed(float s)
 	Speed = s;
 	return Speed;
 }
+bool Attack::isreflectable(bool t)
+{
+	reflectable = t;
+	return t;
+}
 void Attack::update(float frameTime)
 {
 	Entity::update(frameTime);

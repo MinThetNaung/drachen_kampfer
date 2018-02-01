@@ -83,7 +83,6 @@ void Spacewar::update()
 {
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
-	playership1.update(frameTime);
 	enemy.update(frameTime);
 }
 

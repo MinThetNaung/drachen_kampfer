@@ -12,6 +12,7 @@ Bullet::Bullet()
 	velocity.x = 0;                             // velocity X
 	velocity.y = 0;
 	collisionType = entityNS::ROTATED_BOX;
+	
 }
 
 void Bullet::draw()

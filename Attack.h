@@ -30,4 +30,5 @@ public:
 	void damage(WEAPON);
 	float setdamage(float d); // set the starting damage
 	float setSpeed(float s);
+	bool isreflectable(bool t);
 };
