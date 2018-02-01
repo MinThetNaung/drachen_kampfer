@@ -1,10 +1,10 @@
 // Programming 2D Games
 // Copyright (c) 2011 by: 
 // Charles Kelly
-// Chapter 6 spacewar.h v1.0
+// Chapter 6 Drachen.h v1.0
 
-#ifndef _SPACEWAR_H             // Prevent multiple definitions if this 
-#define _SPACEWAR_H             // file is included in more than one place
+#ifndef _Drachen_H             // Prevent multiple definitions if this 
+#define _Drachen_H             // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
 #include "game.h"
@@ -14,10 +14,13 @@
 #include "playership.h"
 #include "enemy.h"
 
+
+
+
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
-class Spacewar : public Game
+class Drachen : public Game
 {
 private:
     // game items
@@ -34,21 +37,15 @@ private:
 	vector<Bullet>Pbulletv = {};
 	vector<Bullet>Ebulletv = {};
     Image   background;         // backdrop image
-	int cameraX;    // camera x position
-	int cameraY;     // camera y position
-
-	//camera size
-	int cameraWidth = 640; 
-	int cameraHeight = 480;
 
 
 
 public:
     // Constructor
-    Spacewar();
+    Drachen();
 
     // Destructor
-    virtual ~Spacewar();
+    virtual ~Drachen();
 
     // Initialize the game
     void initialize(HWND hwnd);

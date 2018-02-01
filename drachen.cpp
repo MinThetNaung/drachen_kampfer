@@ -2,21 +2,21 @@
 // Copyright (c) 2011 by: 
 // Charles Kelly
 // Draw animated spaceships with collision and shield
-// Chapter 6 spacewar.cpp v1.0
+// Chapter 6 Drachen.cpp v1.0
 // This class is the core of the game
 
-#include "spaceWar.h"
+#include "Drachen.h"
 
 //=============================================================================
 // Constructor
 //=============================================================================
-Spacewar::Spacewar()
+Drachen::Drachen()
 {}
 
 //=============================================================================
 // Destructor
 //=============================================================================
-Spacewar::~Spacewar()
+Drachen::~Drachen()
 {
     releaseAll();           // call onLostDevice() for every graphics item
 }
@@ -25,7 +25,7 @@ Spacewar::~Spacewar()
 // Initializes the game
 // Throws GameError on error
 //=============================================================================
-void Spacewar::initialize(HWND hwnd)
+void Drachen::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 	if (!playershipTextures.initialize(graphics, SHIP_IMAGE))
@@ -83,7 +83,7 @@ void Spacewar::initialize(HWND hwnd)
 //=============================================================================
 // Update all game items
 //=============================================================================
-void Spacewar::update()
+void Drachen::update()
 {
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
@@ -114,13 +114,13 @@ void Spacewar::update()
 //=============================================================================
 // Artificial Intelligence
 //=============================================================================
-void Spacewar::ai()
+void Drachen::ai()
 {}
 
 //=============================================================================
 // Handle collisions
 //=============================================================================
-void Spacewar::collisions()
+void Drachen::collisions()
 {
 	
 	VECTOR2 collisionVector;
@@ -158,7 +158,7 @@ void Spacewar::collisions()
 //=============================================================================
 // Render game items
 //=============================================================================
-void Spacewar::render()
+void Drachen::render()
 {
     graphics->spriteBegin();                // begin drawing sprites
 
@@ -180,7 +180,7 @@ void Spacewar::render()
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
-void Spacewar::releaseAll()
+void Drachen::releaseAll()
 {
     backgroundTexture.onLostDevice();
     gameTextures.onLostDevice();
@@ -193,7 +193,7 @@ void Spacewar::releaseAll()
 // The grahics device has been reset.
 // Recreate all surfaces.
 //=============================================================================
-void Spacewar::resetAll()
+void Drachen::resetAll()
 {
     gameTextures.onResetDevice();
    

@@ -134,7 +134,7 @@
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="planet.cpp" />
     <ClCompile Include="playership.cpp" />
-    <ClCompile Include="spacewar.cpp" />
+    <ClCompile Include="drachen.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="planet.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="playership.h" />
-    <ClInclude Include="spacewar.h" />
+    <ClInclude Include="drachen.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <ItemGroup>
