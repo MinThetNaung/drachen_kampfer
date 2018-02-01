@@ -20,12 +20,12 @@ class Spacewar : public Game
 {
 private:
     // game items
-    TextureManager nebulaTexture;   // nebula texture
+    TextureManager backgroundTexture;   // Background texture
     TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
-    Image   nebula;         // backdrop image
+    Image   background;         // backdrop image
 
 public:
     // Constructor

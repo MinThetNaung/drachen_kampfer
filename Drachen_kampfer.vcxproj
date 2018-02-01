@@ -158,7 +158,7 @@
     <ResourceCompile Include="Drachen_kampfer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pictures\orion.jpg" />
+    <Image Include="pictures\bg_version1.png" />
     <Image Include="pictures\textures.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

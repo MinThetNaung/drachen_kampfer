@@ -114,10 +114,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pictures\orion.jpg">
+    <Image Include="pictures\textures.png">
       <Filter>pictures</Filter>
     </Image>
-    <Image Include="pictures\textures.png">
+    <Image Include="pictures\bg_version1.png">
       <Filter>pictures</Filter>
     </Image>
   </ItemGroup>
