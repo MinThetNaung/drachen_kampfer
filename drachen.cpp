@@ -53,7 +53,8 @@ void Drachen::initialize(HWND hwnd)
 	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
 	
-
+	if (!missileTextures.initialize(graphics, MISSILE_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -103,6 +104,19 @@ void Drachen::update()
 		bullet.isreflectable(true);
 		Pbulletv.push_back(bullet);
 	}
+	if (input->isKeyDown(VK_KEY_O))  //I         // if move right FSM forward declaration
+	{
+		if (!missile.initialize(this, MissileNS::WIDTH, MissileNS::HEIGHT, 0, &missileTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
+		missile.setX(playership1.getX());
+		missile.setY(playership1.getY());
+		missile.setdamage(2);
+		missile.setSpeed(100);
+		missile.setRadians(playership1.getRadians());
+		missile.isreflectable(true);
+		Pmissilev.push_back(missile);
+	}
 	//Player skills
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
@@ -133,6 +147,17 @@ void Drachen::collisions()
 				// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
 			Pbulletv.erase(Pbulletv.begin() + d);
 			tmpBulletPointer = NULL;
+		}
+	}
+	for (unsigned d = 0; d < Pmissilev.size(); d++)
+	{
+		Missile &tempmissile = Pmissilev[d];
+		Missile *tmpMissilePointer = &tempmissile;
+		if (bullet.collidesWith(enemy, collisionVector))
+		{
+			// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
+			Pmissilev.erase(Pmissilev.begin() + d);
+			tmpMissilePointer = NULL;
 		}
 	}
     // if collision between ship and planet
