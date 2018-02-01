@@ -93,7 +93,7 @@ void playership::update(float frameTime, Game* gameptr)
 		bullet.isreflectable(true);
 		bulletv.push_back(bullet);
 	}
-	if (input->isKeyDown(VK_RIGHT))           // if move right
+	if (input->isKeyDown(VK_RIGHT))           // if move right front os 0
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
 		//velocity.y = sin(spriteData.angle)*velocity.y;
