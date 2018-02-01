@@ -21,7 +21,7 @@ class Spacewar : public Game
 {
 private:
     // game items
-    TextureManager nebulaTexture;   // nebula texture
+    TextureManager backgroundTexture;   // Background texture
     TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
 	TextureManager enemyTextures;
@@ -29,6 +29,7 @@ private:
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 	Enemy enemy;
+    Image   background;         // backdrop image
 
 public:
     // Constructor

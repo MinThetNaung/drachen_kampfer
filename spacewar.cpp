@@ -31,7 +31,7 @@ void Spacewar::initialize(HWND hwnd)
 	if (!playershipTextures.initialize(graphics, SHIP_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing characters textures"));
     // nebula texture
-    if (!nebulaTexture.initialize(graphics,NEBULA_IMAGE))
+    if (!backgroundTexture.initialize(graphics,BACKGROUND_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
 
     // main game textures
@@ -43,7 +43,7 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy textures"));
 
     // nebula image
-    if (!nebula.initialize(graphics,0,0,0,&nebulaTexture))
+    if (!background.initialize(graphics,0,0,0,&backgroundTexture))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula"));
 
 	// enemy image
@@ -125,7 +125,7 @@ void Spacewar::render()
 {
     graphics->spriteBegin();                // begin drawing sprites
 
-    nebula.draw();                          // add the orion nebula to the scene
+    background.draw();                          // add the orion nebula to the scene
     planet.draw();                          // add the planet to the scene
     playership1.draw();                           // add the spaceship to the scene
 	enemy.draw();
@@ -140,7 +140,7 @@ void Spacewar::render()
 //=============================================================================
 void Spacewar::releaseAll()
 {
-    nebulaTexture.onLostDevice();
+    backgroundTexture.onLostDevice();
     gameTextures.onLostDevice();
 	enemyTextures.onLostDevice();
     Game::releaseAll();
@@ -156,6 +156,7 @@ void Spacewar::resetAll()
     gameTextures.onResetDevice();
     nebulaTexture.onResetDevice();
 	enemyTextures.onResetDevice();
+    backgroundTexture.onResetDevice();
     Game::resetAll();
     return;
 }
