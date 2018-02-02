@@ -162,6 +162,7 @@
     <ResourceCompile Include="Drachen_kampfer.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="pictures\bullet.png" />
     <Image Include="pictures\enemy1.png" />
     <Image Include="pictures\enemy2.png" />
     <Image Include="pictures\orion.jpg" />

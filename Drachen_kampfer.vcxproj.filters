@@ -141,5 +141,8 @@
     <Image Include="pictures\enemy2.png">
       <Filter>pictures</Filter>
     </Image>
+    <Image Include="pictures\bullet.png">
+      <Filter>pictures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
