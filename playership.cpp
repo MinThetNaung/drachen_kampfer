@@ -125,8 +125,6 @@ void playership::update(float frameTime, Game* gameptr)
 			velocity.x = shipNS::MINSPEED;
 		}
 	}
-
-
 	spriteData.x += frameTime *velocity.x;         // move ship along X 
 	spriteData.y += frameTime *velocity.y;         // move ship along Y
 

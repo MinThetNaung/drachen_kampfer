@@ -100,8 +100,8 @@ void Drachen::update()
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
 		bullet.setFrames(BulletNS::BULLET_START_FRAME, BulletNS::BULLET_END_FRAME);
 		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
-		bullet.setX(playership1.getX());
-		bullet.setY(playership1.getY());
+		bullet.setX(playership1.getCenterX() - bullet.getWidth() / 2 * bullet.getScale());
+		bullet.setY(playership1.getCenterY() - bullet.getHeight() / 2 * bullet.getScale());
 		bullet.setdamage(2);
 		bullet.setSpeed(100);
 		bullet.setRadians(playership1.getRadians());
@@ -114,8 +114,8 @@ void Drachen::update()
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
 		missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
 		missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
-		missile.setX(playership1.getX());
-		missile.setY(playership1.getY());
+		missile.setX(playership1.getCenterX() - missile.getWidth() / 2 * missile.getScale());
+		missile.setY(playership1.getCenterY() - missile.getHeight() / 2 * missile.getScale());
 		missile.setdamage(5);
 		missile.setSpeed(30);
 		missile.setRadians(playership1.getRadians());
@@ -128,8 +128,8 @@ void Drachen::update()
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector"));
 		//missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
 		reflector.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
-		reflector.setX(playership1.getX());
-		reflector.setY(playership1.getY());
+		reflector.setX(playership1.getCenterX()-reflector.getWidth()/2 * reflector.getScale());
+		reflector.setY(playership1.getCenterY()-reflector.getHeight() /2 * reflector.getScale());
 		reflector.setdamage(1);
 		//missile.setSpeed(30);
 		//missile.setRadians(playership1.getRadians());
