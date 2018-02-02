@@ -15,19 +15,19 @@ namespace AttackNS
 class Attack : public Entity
 {
 private:
-	float Damage;
-	float Speed;
-	bool reflectable;
+
 public:
 	// constructor
 	Attack();
-
+	float Damage;
+	float Speed;
+	bool reflectable;
 	// inherited member functions
 	virtual void draw();
 	virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
 		TextureManager *textureM);
 	void update(float frameTime);
-	void damage(WEAPON);
+	//void damage(WEAPON);
 	float setdamage(float d); // set the starting damage
 	float setSpeed(float s);
 	bool isreflectable(bool t);

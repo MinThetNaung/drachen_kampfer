@@ -13,6 +13,8 @@
 #include "planet.h"
 #include "playership.h"
 #include "enemy.h"
+#include "Bullet.h"
+#include "Missile.h"
 
 /*namespace drachenNS
 {
@@ -38,10 +40,18 @@ private:
 	TextureManager playershipTextures;
 	TextureManager bulletTextures;
 	TextureManager enemyTextures;
+	TextureManager missileTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 	Enemy enemy;
+	Bullet bullet;
+	Missile missile;
+	
+	vector<Bullet>Pbulletv = {};
+	vector<Bullet>Ebulletv = {};
+	vector<Missile>Pmissilev = {};
+	vector<Missile>Emissilev = {};
     Image   background;         // backdrop image
 
 

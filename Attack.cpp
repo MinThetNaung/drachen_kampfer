@@ -35,9 +35,9 @@ void Attack::update(float frameTime)
 	Entity::update(frameTime);
 
 }
-void Attack::damage(WEAPON)
+/*void Attack::damage(WEAPON)
 {
-}
+}*/
 void Attack::draw()
 {
 	Image::draw();

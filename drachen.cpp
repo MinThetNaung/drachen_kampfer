@@ -53,8 +53,8 @@ void Drachen::initialize(HWND hwnd)
 	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
 	
-
-
+	if (!missileTextures.initialize(graphics, MISSILE_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -89,6 +89,40 @@ void Drachen::update()
     //planet.update(frameTime);
 	playership1.update(frameTime,this);
 	enemy.update(frameTime);
+	//Player skills
+	if (input->isKeyDown(VK_KEY_I))  //I         // if move right FSM forward declaration
+	{
+
+		if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
+		bullet.setX(playership1.getX());
+		bullet.setY(playership1.getY());
+		bullet.setdamage(2);
+		bullet.setSpeed(100);
+		bullet.setRadians(playership1.getRadians());
+		bullet.isreflectable(true);
+		Pbulletv.push_back(bullet);
+	}
+	if (input->isKeyDown(VK_KEY_O))  //I         // if move right FSM forward declaration
+	{
+		if (!missile.initialize(this, MissileNS::WIDTH, MissileNS::HEIGHT, 0, &missileTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
+		missile.setX(playership1.getX());
+		missile.setY(playership1.getY());
+		missile.setdamage(2);
+		missile.setSpeed(100);
+		missile.setRadians(playership1.getRadians());
+		missile.isreflectable(true);
+		Pmissilev.push_back(missile);
+	}
+	//Player skills
+	for (unsigned d = 0; d < Pbulletv.size(); d++)
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		tempbullet.update(frameTime);
+	}
 }
 
 //=============================================================================
@@ -103,7 +137,29 @@ void Drachen::ai()
 void Drachen::collisions()
 {
 	
-    VECTOR2 collisionVector;
+	VECTOR2 collisionVector;
+	for (unsigned d = 0; d < Pbulletv.size(); d++) 
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		Bullet *tmpBulletPointer = &tempbullet;
+		if (bullet.collidesWith(enemy, collisionVector))
+		{
+				// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
+			Pbulletv.erase(Pbulletv.begin() + d);
+			tmpBulletPointer = NULL;
+		}
+	}
+	for (unsigned d = 0; d < Pmissilev.size(); d++)
+	{
+		Missile &tempmissile = Pmissilev[d];
+		Missile *tmpMissilePointer = &tempmissile;
+		if (bullet.collidesWith(enemy, collisionVector))
+		{
+			// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
+			Pmissilev.erase(Pmissilev.begin() + d);
+			tmpMissilePointer = NULL;
+		}
+	}
     // if collision between ship and planet
     /*if(ship1.collidesWith(planet, collisionVector))
     {
@@ -135,6 +191,11 @@ void Drachen::render()
     planet.draw();                          // add the planet to the scene
     playership1.draw();                           // add the spaceship to the scene
 	enemy.draw();
+	for (unsigned d = 0; d < Pbulletv.size(); d++)
+	{
+		Bullet &tempbullet = Pbulletv[d];
+		tempbullet.draw();
+	}
     //ship2.draw();                           // add the spaceship to the scene
 
     graphics->spriteEnd();                  // end drawing sprites
