@@ -55,6 +55,9 @@ void Drachen::initialize(HWND hwnd)
 	
 	if (!missileTextures.initialize(graphics, MISSILE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing missile textures"));
+
+	if (!reflectorTextures.initialize(graphics, REFLECTOR_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector textures"));
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -119,6 +122,20 @@ void Drachen::update()
 		missile.isreflectable(false);
 		Pmissilev.push_back(missile);
 	}
+	if (input->isKeyDown(VK_KEY_P))  //I         // if move right FSM forward declaration
+	{
+		if (!reflector.initialize(this, ReflectorNS::WIDTH, ReflectorNS::HEIGHT, 0, &reflectorTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector"));
+		//missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
+		reflector.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
+		reflector.setX(playership1.getX());
+		reflector.setY(playership1.getY());
+		reflector.setdamage(1);
+		//missile.setSpeed(30);
+		//missile.setRadians(playership1.getRadians());
+		//missile.isreflectable(false);
+		Preflectorv.push_back(reflector);
+	}
 	//Player skills
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
@@ -129,6 +146,11 @@ void Drachen::update()
 	{
 		Missile &tempmissile = Pmissilev[d];
 		tempmissile.update(frameTime);
+	}
+	for (unsigned d = 0; d < Preflectorv.size(); d++)
+	{
+		Reflector &tempreflector = Preflectorv[d];
+		tempreflector.update(frameTime);
 	}
 }
 
@@ -167,6 +189,7 @@ void Drachen::collisions()
 			tmpMissilePointer = NULL;
 		}
 	}
+
     // if collision between ship and planet
     /*if(ship1.collidesWith(planet, collisionVector))
     {
@@ -208,6 +231,11 @@ void Drachen::render()
 	{
 		Missile &tempmissile = Pmissilev[d];
 		tempmissile.draw();
+	}
+	for (unsigned d = 0; d < Preflectorv.size(); d++)
+	{
+		Reflector &tempreflector = Preflectorv[d];
+		tempreflector.draw();
 	}
     graphics->spriteEnd();                  // end drawing sprites
 }

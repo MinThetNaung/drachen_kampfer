@@ -52,7 +52,7 @@ const char SHIP_IMAGE[] = "pictures\\ship.png";
 const char BULLET_IMAGE[] = "pictures\\bullet.png";
 const char ENEMY_IMAGE[] = "pictures\\enemy2.png";
 const char MISSILE_IMAGE[] = "pictures\\missile.png";
-
+const char REFLECTOR_IMAGE[] = "pictures\\reflector.png";
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.
@@ -65,7 +65,7 @@ const UCHAR ENTER_KEY    = VK_RETURN;       // Enter key
 #define VK_KEY_S	0x53 
 #define VK_KEY_D	0x44 
 #define VK_KEY_O    0x4F
-
+#define VK_KEY_P    0x50
 // weapon types
 enum WEAPON {TORPEDO, SHIP, PLANET};
 

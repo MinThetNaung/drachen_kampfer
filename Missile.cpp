@@ -2,7 +2,7 @@
 
 Missile::Missile()
 {
-	spriteData.scale = 0.5;
+	//spriteData.scale = 0.5;
 	spriteData.width = MissileNS::WIDTH;           // size of Ship1
 	spriteData.height = MissileNS::HEIGHT;
 	spriteData.x = MissileNS::X;                   // location on screen

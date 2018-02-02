@@ -135,6 +135,7 @@
     <ClCompile Include="planet.cpp" />
     <ClCompile Include="playership.cpp" />
     <ClCompile Include="drachen.cpp" />
+    <ClCompile Include="reflector.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Movementcomponent.h" />
     <ClInclude Include="planet.h" />
+    <ClInclude Include="reflector.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="playership.h" />
     <ClInclude Include="drachen.h" />

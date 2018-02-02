@@ -15,7 +15,7 @@
 #include "enemy.h"
 #include "Bullet.h"
 #include "Missile.h"
-
+#include "reflector.h"
 /*namespace drachenNS
 {
 	int cameraX = 0;    // camera x position
@@ -41,17 +41,19 @@ private:
 	TextureManager bulletTextures;
 	TextureManager enemyTextures;
 	TextureManager missileTextures;
+	TextureManager reflectorTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 	Enemy enemy;
 	Bullet bullet;
 	Missile missile;
-	
+	Reflector reflector;
 	vector<Bullet>Pbulletv = {};
 	vector<Bullet>Ebulletv = {};
 	vector<Missile>Pmissilev = {};
 	vector<Missile>Emissilev = {};
+	vector<Reflector>Preflectorv = {};
     Image   background;         // backdrop image
 
 
