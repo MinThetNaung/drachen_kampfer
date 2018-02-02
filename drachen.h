@@ -14,9 +14,18 @@
 #include "playership.h"
 #include "enemy.h"
 
+/*namespace drachenNS
+{
+	int cameraX = 0;    // camera x position
+	int cameraY = 0;     // camera y position
 
+	//camera size
+	int cameraWidth = 640;
+	int cameraHeight = 480;
 
+}
 
+*/
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
