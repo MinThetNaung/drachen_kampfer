@@ -3,8 +3,8 @@
 #include "constants.h"
 namespace BulletNS
 {
-	const int WIDTH = 48;                   // image width
-	const int HEIGHT = 48;                  // image height
+	const int WIDTH = 177;                   // image width
+	const int HEIGHT = 164;                  // image height
 	const int X = GAME_WIDTH / 2 - WIDTH / 2;   // location on screen
 	const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
 	const int   TEXTURE_COLS = 3;

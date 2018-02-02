@@ -95,6 +95,7 @@ void Drachen::update()
 
 		if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		bullet.setFrames(BulletNS::BULLET_START_FRAME, BulletNS::BULLET_END_FRAME);
 		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
 		bullet.setX(playership1.getX());
 		bullet.setY(playership1.getY());
@@ -108,13 +109,14 @@ void Drachen::update()
 	{
 		if (!missile.initialize(this, MissileNS::WIDTH, MissileNS::HEIGHT, 0, &missileTextures))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
 		missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
 		missile.setX(playership1.getX());
 		missile.setY(playership1.getY());
-		missile.setdamage(2);
-		missile.setSpeed(100);
+		missile.setdamage(5);
+		missile.setSpeed(30);
 		missile.setRadians(playership1.getRadians());
-		missile.isreflectable(true);
+		missile.isreflectable(false);
 		Pmissilev.push_back(missile);
 	}
 	//Player skills
@@ -122,6 +124,11 @@ void Drachen::update()
 	{
 		Bullet &tempbullet = Pbulletv[d];
 		tempbullet.update(frameTime);
+	}
+	for (unsigned d = 0; d < Pmissilev.size(); d++)
+	{
+		Missile &tempmissile = Pmissilev[d];
+		tempmissile.update(frameTime);
 	}
 }
 
@@ -197,7 +204,11 @@ void Drachen::render()
 		tempbullet.draw();
 	}
     //ship2.draw();                           // add the spaceship to the scene
-
+	for (unsigned d = 0; d < Pmissilev.size(); d++)
+	{
+		Missile &tempmissile = Pmissilev[d];
+		tempmissile.draw();
+	}
     graphics->spriteEnd();                  // end drawing sprites
 }
 
