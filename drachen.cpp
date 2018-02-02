@@ -54,7 +54,7 @@ void Drachen::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
 	
 	if (!missileTextures.initialize(graphics, MISSILE_IMAGE))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing missile textures"));
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
