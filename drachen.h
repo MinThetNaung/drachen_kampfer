@@ -18,6 +18,12 @@
 #include "reflector.h"
 namespace drachenNS
 {
+	const char FONT[] = "Arial Bold";  // font
+	const int FONT_BIG_SIZE = 256;     // font height
+	const int FONT_SCORE_SIZE = 48;
+	const COLOR_ARGB FONT_COLOR = graphicsNS::YELLOW;
+	const COLOR_ARGB SHIP1_COLOR = graphicsNS::BLUE;
+
 	/*int cameraX = 0;    // camera x position
 	int cameraY = 0;     // camera y position
 
