@@ -90,61 +90,51 @@ void Drachen::initialize(HWND hwnd)
 void Drachen::update()
 {
     //planet.update(frameTime);
-	playership1.update(frameTime);
+	playership1.update(frameTime,this);
 	enemy.update(frameTime);
 	//Player skills
 	if (input->isKeyDown(VK_KEY_I))  //I         // if move right FSM forward declaration
 	{
-		if (playership1.isbulletcool() == false)
-		{
-			if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, BulletNS::TEXTURE_COLS, &bulletTextures))
-				throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
-			bullet.setFrames(BulletNS::BULLET_START_FRAME, BulletNS::BULLET_END_FRAME);
-			bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
-			bullet.setX(playership1.getCenterX() - bullet.getWidth() / 2 * bullet.getScale());
-			bullet.setY(playership1.getCenterY() - bullet.getHeight() / 2 * bullet.getScale());
-			bullet.setdamage(2);
-			bullet.setSpeed(30);
-			bullet.setRadians(playership1.getRadians());
-			bullet.isreflectable(true);
-			Pbulletv.push_back(bullet);
-			playership1.bulletfired(true);
-		}
+
+		if (!bullet.initialize(this, BulletNS::WIDTH, BulletNS::HEIGHT, 0, &bulletTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		bullet.setFrames(BulletNS::BULLET_START_FRAME, BulletNS::BULLET_END_FRAME);
+		bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
+		bullet.setX(playership1.getCenterX() - bullet.getWidth() / 2 * bullet.getScale());
+		bullet.setY(playership1.getCenterY() - bullet.getHeight() / 2 * bullet.getScale());
+		bullet.setdamage(2);
+		bullet.setSpeed(100);
+		bullet.setRadians(playership1.getRadians());
+		bullet.isreflectable(true);
+		Pbulletv.push_back(bullet);
 	}
 	if (input->isKeyDown(VK_KEY_O))  //I         // if move right FSM forward declaration
 	{
-		if (playership1.ismissilecool() == false)
-		{
-			if (!missile.initialize(this, MissileNS::WIDTH, MissileNS::HEIGHT, MissileNS::TEXTURE_COLS, &missileTextures))
-				throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
-			missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
-			missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
-			missile.setX(playership1.getCenterX() - missile.getWidth() / 2 * missile.getScale());
-			missile.setY(playership1.getCenterY() - missile.getHeight() / 2 * missile.getScale());
-			missile.setdamage(5);
-			missile.setSpeed(20);
-			missile.setRadians(playership1.getRadians());
-			missile.isreflectable(false);
-			Pmissilev.push_back(missile);
-			playership1.missilefired(true);
-		}
+		if (!missile.initialize(this, MissileNS::WIDTH, MissileNS::HEIGHT, 0, &missileTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet"));
+		missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
+		missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
+		missile.setX(playership1.getCenterX() - missile.getWidth() / 2 * missile.getScale());
+		missile.setY(playership1.getCenterY() - missile.getHeight() / 2 * missile.getScale());
+		missile.setdamage(5);
+		missile.setSpeed(30);
+		missile.setRadians(playership1.getRadians());
+		missile.isreflectable(false);
+		Pmissilev.push_back(missile);
 	}
 	if (input->isKeyDown(VK_KEY_P))  //I         // if move right FSM forward declaration
 	{
-		if (playership1.isreflectorcool() == false)
-		{
-			if (!reflector.initialize(this, ReflectorNS::WIDTH, ReflectorNS::HEIGHT, ReflectorNS::TEXTURE_COLS, &reflectorTextures))
-				throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector"));
-			//missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
-			reflector.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
-			reflector.setX(playership1.getCenterX()-reflector.getWidth()/2 * reflector.getScale());
-			reflector.setY(playership1.getCenterY()-reflector.getHeight() /2 * reflector.getScale());
-			//missile.setSpeed(30);
-			//missile.setRadians(playership1.getRadians());
-			//missile.isreflectable(false);
-			Preflectorv.push_back(reflector);
-			playership1.reflectorfired(true);
-		}
+		if (!reflector.initialize(this, ReflectorNS::WIDTH, ReflectorNS::HEIGHT, 0, &reflectorTextures))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector"));
+		//missile.setFrames(MissileNS::MISSILE_START_FRAME, MissileNS::MISSILE_END_FRAME);
+		reflector.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
+		reflector.setX(playership1.getCenterX()-reflector.getWidth()/2 * reflector.getScale());
+		reflector.setY(playership1.getCenterY()-reflector.getHeight() /2 * reflector.getScale());
+		reflector.setdamage(1);
+		//missile.setSpeed(30);
+		//missile.setRadians(playership1.getRadians());
+		//missile.isreflectable(false);
+		Preflectorv.push_back(reflector);
 	}
 	//Player skills
 	for (unsigned d = 0; d < Pbulletv.size(); d++)

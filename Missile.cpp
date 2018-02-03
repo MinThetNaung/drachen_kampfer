@@ -26,7 +26,7 @@ bool Missile::initialize(Game * gamePtr, int width, int height, int ncols, Textu
 
 void Missile::update(float frameTime)
 {
-	Entity::update(frameTime);
+
 	velocity.y += sin(spriteData.angle)*Speed;
 	velocity.x += cos(spriteData.angle)*Speed;
 	spriteData.x += frameTime *velocity.x;         // move bullet along X 

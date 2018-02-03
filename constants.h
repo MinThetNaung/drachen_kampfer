@@ -44,8 +44,7 @@ const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calcul
 const float GRAVITY = 6.67428e-11f;             // gravitational constant
 const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
-const float playerregen = 600;
-const int Pbulletcooldown = 10;
+
 // graphic images
 const char BACKGROUND_IMAGE[] =   "pictures\\bg_version1.png";     // photo source NASA/courtesy of nasaimages.org 
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
