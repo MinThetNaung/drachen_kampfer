@@ -32,6 +32,39 @@ playership::playership() : Entity()
 	
 }
 
+bool playership::isbulletcool()
+{
+	return bulletcool;
+}
+
+void playership::bulletfired(bool t)
+{
+	bulletcool = t;
+	bulletcooldown = shipNS::BULLETCOOLDOWN;
+}
+
+bool playership::ismissilecool()
+{
+	return missilecool;
+}
+
+void playership::missilefired(bool t)
+{
+	missilecool = t;
+	missilecooldown = shipNS::MISSILECOOLDOWN;
+}
+
+bool playership::isreflectorcool()
+{
+	return reflectorcool;
+}
+
+void playership::reflectorfired(bool t)
+{
+	reflectorcool = t;
+	reflectorcool = shipNS::REFLECTORCOOLDOWN;
+}
+
 //=============================================================================
 // Initialize the Ship.
 // Post: returns true if successful, false if failed
@@ -64,27 +97,45 @@ void playership::draw()
 // typically called once per frame
 // frameTime is used to regulate the speed of movement and animation
 //=============================================================================
-void playership::update(float frameTime, Game* gameptr)
+void playership::update(float frameTime)
 {
-	
-    Entity::update(frameTime);
+
+	Entity::update(frameTime);
 	healthcomponent.update();
-      // rotate the ship
+	// rotate the ship
 	if (healthcomponent.getchealth() <= healthcomponent.getmhealth())
 	{
 		regencount++;
-		if (regencount >= 600)
+		if (regencount >= playerregen)
 		{
 			healthcomponent.setchealth(healthcomponent.getchealth() + 1);
 			regencount = 0;
 		}
-		
+
 	}
-
-	if (input->isKeyDown(VK_KEY_I))           // if move right
+	if (bulletcool == true)
 	{
-		
-
+		bulletcooldown--;
+		if (bulletcooldown <= 0)
+		{
+			bulletcool = false;
+		}
+	}
+	if (missilecool == true)
+	{
+		missilecooldown--;
+		if (missilecooldown <= 0)
+		{
+			missilecool = false;
+		}
+	}
+	if (reflectorcool == true)
+	{
+		reflectorcooldown--;
+		if (reflectorcooldown <= 0)
+		{
+			reflectorcool = false;
+		}
 	}
 	if (input->isKeyDown(VK_KEY_D))           // if move right front os 0
 	{
