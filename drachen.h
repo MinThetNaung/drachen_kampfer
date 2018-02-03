@@ -16,18 +16,25 @@
 #include "Bullet.h"
 #include "Missile.h"
 #include "reflector.h"
-/*namespace drachenNS
+namespace drachenNS
 {
-	int cameraX = 0;    // camera x position
+	const char FONT[] = "Arial Bold";  // font
+	const int FONT_BIG_SIZE = 256;     // font height
+	const int FONT_SCORE_SIZE = 48;
+	const COLOR_ARGB FONT_COLOR = graphicsNS::YELLOW;
+	const COLOR_ARGB SHIP1_COLOR = graphicsNS::BLUE;
+
+	/*int cameraX = 0;    // camera x position
 	int cameraY = 0;     // camera y position
 
 	//camera size
-	int cameraWidth = 640;
-	int cameraHeight = 480;
-
+	const int cameraWidth = 640;
+	const int cameraHeight = 480;
+	const float scroll_rate = 10;
+	*/
 }
 
-*/
+
 //=============================================================================
 // This class is the core of the game
 //=============================================================================
@@ -55,6 +62,10 @@ private:
 	vector<Missile>Emissilev = {};
 	vector<Reflector>Preflectorv = {};
     Image   background;         // backdrop image
+	int cameraX;
+	int cameraY;
+	//int screenWidth;
+	//int screenHeight;
 
 
 

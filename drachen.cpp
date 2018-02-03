@@ -6,12 +6,23 @@
 // This class is the core of the game
 
 #include "Drachen.h"
+using namespace drachenNS;
 
 //=============================================================================
 // Constructor
 //=============================================================================
 Drachen::Drachen()
-{}
+{
+	//The actual size of the display screen
+	//screenWidth = 300;
+	//screenHeight = 400;
+
+	//camera position
+	//cameraX = 0; 
+	//cameraY = 0;
+
+
+}
 
 //=============================================================================
 // Destructor
@@ -67,8 +78,11 @@ void Drachen::initialize(HWND hwnd)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ship1"));
 	//playership1.setFrames(shipNS::SHIP1_START_FRAME, shipNS::SHIP1_END_FRAME);
 	playership1.setCurrentFrame(shipNS::SHIP1_START_FRAME);
-	playership1.setX(GAME_WIDTH/4);
-	playership1.setY(GAME_HEIGHT/4);
+	//playership1.setX(GAME_WIDTH /4);
+	//playership1.setY(GAME_HEIGHT/4);
+	//To set the player ship in the center
+	playership1.setX(GAME_WIDTH / 2 - shipNS::WIDTH /2 );
+	playership1.setY(GAME_HEIGHT /2 - shipNS::HEIGHT/2);
     //ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
     // ship2
     
@@ -89,6 +103,13 @@ void Drachen::initialize(HWND hwnd)
 //=============================================================================
 void Drachen::update()
 {
+	/*float playership1X;
+	float playership1Y;
+
+	playership1X = playership1.getX(); //get player location
+	playership1Y = playership1.getY(); 
+	*/
+	
     //planet.update(frameTime);
 	playership1.update(frameTime);
 	enemy.update(frameTime);
@@ -162,6 +183,74 @@ void Drachen::update()
 		Reflector &tempreflector = Preflectorv[d];
 		tempreflector.update(frameTime);
 	}
+/*
+	if (playership1X < 0)
+	{
+		cameraX -= playership1.getVelocity().x * frameTime; //scroll map right
+		playership1.setX(0); //put the playership at left edge
+
+	}
+
+	else if (playership1X > (GAME_WIDTH - playership1.getWidth()))
+	{
+		cameraX -= playership1.getVelocity().x * frameTime; // scroll map left
+		playership1.setX((float)(GAME_WIDTH - playership1.getWidth())); // put the player at right edge
+		
+		
+	}
+
+	else if (playership1Y < 0)
+	{
+		cameraY -= playership1.getVelocity().y * frameTime;
+		playership1.setY(0);
+	}
+
+	else if (playership1Y > ( GAME_HEIGHT - playership1.getHeight()))
+	{
+		cameraY -= playership1.getVelocity().y * frameTime; // scroll map left
+		playership1.setY((float)(GAME_HEIGHT - playership1.getHeight())); // put the player at right edge
+
+	}
+
+	if (cameraX > 0) // if the camera past left edge
+	{
+		cameraX = 0; // stop at left edge of map
+		
+	}
+	else if (cameraY < 0)
+	{
+		cameraY = 0;
+	}
+	
+	else if (cameraX > GAME_WIDTH - cameraWidth)
+	{
+		cameraX = GAME_WIDTH - cameraWidth;
+	}
+
+	else if (cameraY > GAME_HEIGHT - cameraHeight)
+	{
+		cameraY = GAME_HEIGHT - cameraHeight;
+	}*/
+/*
+	//camera
+	int x = playership1.getX() - cameraX;
+	int y = playership1.getY() - cameraY;
+
+	//moving the camera
+	if (cameraX < 0)
+		cameraY = 0;
+	if (cameraY < 0)
+		cameraY = 0;
+	if (cameraX > GAME_WIDTH - screenWidth)
+		cameraX = GAME_WIDTH - screenWidth;
+
+	if (cameraY > GAME_HEIGHT - screenHeight)
+		cameraY = GAME_HEIGHT - screenHeight;
+
+	//making the camera follow the player
+	cameraX = playership1.getX() - screenWidth / 2;
+	cameraY = playership1.getY() - screenHeight / 2;
+	*/
 }
 
 //=============================================================================
