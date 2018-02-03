@@ -34,6 +34,9 @@ namespace shipNS
     const int   SHIELD_START_FRAME = 24;    // shield start frame
     const int   SHIELD_END_FRAME = 27;      // shield end frame
     const float SHIELD_ANIMATION_DELAY = 0.1f; // time between frames
+	const int BULLETCOOLDOWN = 10;
+	const int MISSILECOOLDOWN = 10;
+	const int REFLECTORCOOLDOWN = 10;
 	
 }
 
@@ -44,19 +47,30 @@ private:
 	MovementComponent movecomponent;
 	HealthComponent healthcomponent;
 	int regencount = 0;
-	TextureManager bulletTextures;
+	bool bulletcool = false;
+	int bulletcooldown = 0;
+	bool missilecool = false;
+	int missilecooldown = 0;
+	bool reflectorcool = false;
+	int reflectorcooldown = 0;
+	//TextureManager bulletTextures;
 
     //bool    shieldOn;
     //Image   shield;
 public:
     // constructor
 	playership();
-
+	bool isbulletcool();
+	void bulletfired(bool t);
+	bool ismissilecool();
+	void missilefired(bool t);
+	bool isreflectorcool();
+	void reflectorfired(bool t);
     // inherited member functions
     virtual void draw();
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
                             TextureManager *textureM);
-    void update(float frameTime, Game* gameptr);
+    void update(float frameTime);
     //void damage(WEAPON);
 };
 #endif

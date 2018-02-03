@@ -26,5 +26,6 @@ bool Reflector::initialize(Game * gamePtr, int width, int height, int ncols, Tex
 
 void Reflector::update(float frameTime)
 {
-
+	Entity::update(frameTime);
+	spriteData.angle += frameTime * ReflectorNS::ROTATION_RATE;
 }
