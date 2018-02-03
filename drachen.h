@@ -55,6 +55,10 @@ private:
 	vector<Missile>Emissilev = {};
 	vector<Reflector>Preflectorv = {};
     Image   background;         // backdrop image
+	int cameraX;
+	int cameraY;
+	int screenWidth;
+	int screenHeight;
 
 
 

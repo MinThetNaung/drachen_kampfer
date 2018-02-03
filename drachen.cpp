@@ -11,7 +11,17 @@
 // Constructor
 //=============================================================================
 Drachen::Drachen()
-{}
+{
+	//The actual size of the display screen
+	screenWidth = 300;
+	screenHeight = 400;
+
+	//camera position
+	cameraX = 0; 
+	cameraY = 0;
+
+
+}
 
 //=============================================================================
 // Destructor
@@ -67,8 +77,11 @@ void Drachen::initialize(HWND hwnd)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ship1"));
 	//playership1.setFrames(shipNS::SHIP1_START_FRAME, shipNS::SHIP1_END_FRAME);
 	playership1.setCurrentFrame(shipNS::SHIP1_START_FRAME);
-	playership1.setX(GAME_WIDTH/4);
-	playership1.setY(GAME_HEIGHT/4);
+	//playership1.setX(GAME_WIDTH /4);
+	//playership1.setY(GAME_HEIGHT/4);
+	//To set the player ship in the center
+	playership1.setX(GAME_WIDTH / 2);//- shipNS::WIDTH);
+	playership1.setY(GAME_HEIGHT / 2);//- shipNS::HEIGHT);
     //ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
     // ship2
     
@@ -152,6 +165,26 @@ void Drachen::update()
 		Reflector &tempreflector = Preflectorv[d];
 		tempreflector.update(frameTime);
 	}
+
+
+	//camera
+	int x = playership1.getX - cameraX;
+	int y = playership1.getY - cameraY;
+
+	//moving the camera
+	if (cameraX < 0)
+		cameraY = 0;
+	if (cameraY < 0)
+		cameraY = 0;
+	if (cameraX > GAME_WIDTH - screenWidth)
+		cameraX = GAME_WIDTH - screenWidth;
+
+	if (cameraY > GAME_HEIGHT - screenHeight)
+		cameraY = GAME_HEIGHT - screenHeight;
+
+	//making the camera follow the player
+	cameraX = playership1.getX - screenWidth / 2;
+	cameraY = playership1.getY - screenHeight / 2;
 }
 
 //=============================================================================
