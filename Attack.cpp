@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #include "Attack.h"
 
 
@@ -27,6 +31,10 @@ float Attack::getdamage()
 float Attack::setSpeed(float s)
 {
 	Speed = s;
+	return Speed;
+}
+float Attack::getSpeed()
+{
 	return Speed;
 }
 bool Attack::isreflectable(bool t)

@@ -1,16 +1,21 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #pragma once
 #include "Attack.h"
 #include "constants.h"
 namespace ReflectorNS
 {
-	const int WIDTH = 1024;                   // image width
-	const int HEIGHT = 1024;                  // image height
+	const int WIDTH = 933;                   // image width
+	const int HEIGHT = 933;                  // image height
 	const int X = GAME_WIDTH / 2 - WIDTH / 2;   // location on screen
 	const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
 	const int   TEXTURE_COLS = 0;
 	const int   REFLECTOR_START_FRAME = 0;      // ship1 starts at frame 0
 	const int   REFLECTOR_END_FRAME = 0;
 	const float ROTATION_RATE = (float)2 * PI;
+
 	//const int   SWORD_START_FRAME = 0;      // sword start
 	//const int   SWORD_END_FRAME = 4;
 	//const float SWORD_ANIMATION_DELAY = 0.3f;

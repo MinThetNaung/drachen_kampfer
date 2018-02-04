@@ -1,8 +1,7 @@
-// Programming 2D Games
-// Copyright (c) 2011 by: 
-// Charles Kelly
-// gameError.h v1.0
-// Error class thrown by game engine.
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 
 #ifndef _GAMEERROR_H            // Prevent multiple definitions if this 
 #define _GAMEERROR_H            // file is included in more than one place

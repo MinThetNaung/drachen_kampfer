@@ -1,7 +1,7 @@
-// Programming 2D Games
-// Copyright (c) 2011 by: 
-// Charles Kelly
-// Chapter 6 ship.cpp v1.0
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 
 #include "playership.h"
 
@@ -11,21 +11,25 @@
 playership::playership() : Entity()
 {
 	spriteData.scale = 0.5;
-    spriteData.width = shipNS::WIDTH;           // size of Ship1
-    spriteData.height = shipNS::HEIGHT;
-    spriteData.x = shipNS::X;                   // location on screen
-    spriteData.y = shipNS::Y;
-    spriteData.rect.bottom = shipNS::HEIGHT;    // rectangle to select parts of an image
-    spriteData.rect.right = shipNS::WIDTH;
+    spriteData.width = playershipNS::WIDTH;           // size of Ship1
+    spriteData.height = playershipNS::HEIGHT;
+    spriteData.x = playershipNS::X;                   // location on screen
+    spriteData.y = playershipNS::Y;
+    spriteData.rect.bottom = playershipNS::HEIGHT;    // rectangle to select parts of an image
+    spriteData.rect.right = playershipNS::WIDTH;
     velocity.x = 0;                             // velocity X
     velocity.y = 0;                             // velocity Y
-    frameDelay = shipNS::SHIP_ANIMATION_DELAY;
+    frameDelay = playershipNS::SHIP_ANIMATION_DELAY;
+	edge.top = playershipNS::HEIGHT / 2 * -1;             // ROTATED_BOX collision edges
+	edge.bottom = playershipNS::HEIGHT / 2;
+	edge.left = playershipNS::WIDTH / 2 * -1;
+	edge.right = playershipNS::WIDTH / 2;
     //startFrame = shipNS::SHIP1_START_FRAME;     // first frame of ship animation
     //endFrame     = shipNS::SHIP1_END_FRAME;     // last frame of ship animation
     currentFrame = startFrame;
-    radius = shipNS::WIDTH/2.0;
+    radius = playershipNS::WIDTH/2.0;
     //shieldOn = false;
-    mass = shipNS::MASS;
+    mass = playershipNS::MASS;
     collisionType = entityNS::ROTATED_BOX;
 	healthcomponent.setmhealth(5);
 	healthcomponent.setchealth(healthcomponent.getmhealth());
@@ -39,7 +43,7 @@ bool playership::isbulletcool()
 void playership::bulletfired(bool t)
 {
 	bulletcool = t;
-	bulletcooldown = shipNS::BULLETCOOLDOWN;
+	bulletcooldown = playershipNS::BULLETCOOLDOWN;
 }
 
 bool playership::ismissilecool()
@@ -50,7 +54,7 @@ bool playership::ismissilecool()
 void playership::missilefired(bool t)
 {
 	missilecool = t;
-	missilecooldown = shipNS::MISSILECOOLDOWN;
+	missilecooldown = playershipNS::MISSILECOOLDOWN;
 }
 
 bool playership::isreflectorcool()
@@ -61,7 +65,7 @@ bool playership::isreflectorcool()
 void playership::reflectorfired(bool t)
 {
 	reflectorcool = t;
-	reflectorcooldown = shipNS::REFLECTORCOOLDOWN;
+	reflectorcooldown = playershipNS::REFLECTORCOOLDOWN;
 }
 
 bool playership::isspecialcool()
@@ -72,7 +76,7 @@ bool playership::isspecialcool()
 void playership::specialfired(bool t)
 {
 	specialcool = t;
-	specialcooldown = shipNS::SPECIALCOOLDOWN;
+	specialcooldown = playershipNS::SPECIALCOOLDOWN;
 }
 
 int playership::getpchealth()
@@ -94,6 +98,8 @@ void playership::setpmhealth(int i)
 {
 	healthcomponent.setmhealth(i);
 }
+
+
 
 //=============================================================================
 // Initialize the Ship.
@@ -191,41 +197,41 @@ void playership::update(float frameTime)
 	//movement rotate
 	if (input->isKeyDown(VK_KEY_D))           // if move right front os 0
 	{
-		spriteData.angle += frameTime * shipNS::ROTATION_RATE;
+		spriteData.angle += frameTime * playershipNS::ROTATION_RATE;
 		//velocity.y = sin(spriteData.angle)*velocity.y;
 		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_KEY_A))           // if move left
 	{
-		spriteData.angle -= frameTime * shipNS::ROTATION_RATE;
+		spriteData.angle -= frameTime * playershipNS::ROTATION_RATE;
 		//velocity.y = sin(spriteData.angle)*velocity.y;
 		//velocity.x = cos(spriteData.angle)*velocity.x;
 	}
 	else if (input->isKeyDown(VK_KEY_W))           // if move up
 	{
 
-		velocity.y += sin(spriteData.angle)*shipNS::SPEED;
-		velocity.x += cos(spriteData.angle)*shipNS::SPEED;
-	    if (velocity.y > shipNS::MAXSPEED)
+		velocity.y += sin(spriteData.angle)*playershipNS::SPEED;
+		velocity.x += cos(spriteData.angle)*playershipNS::SPEED;
+	    if (velocity.y > playershipNS::MAXSPEED)
 		{
-			velocity.y = shipNS::MAXSPEED;
+			velocity.y = playershipNS::MAXSPEED;
 		}
-		if (velocity.x > shipNS::MAXSPEED)
+		if (velocity.x > playershipNS::MAXSPEED)
 		{
-			velocity.x = shipNS::MAXSPEED;
+			velocity.x = playershipNS::MAXSPEED;
 		}
 	}
 	else if (input->isKeyDown(VK_KEY_S))           // if move down
 	{
-		velocity.y -= sin(spriteData.angle)*shipNS::SPEED;
-		velocity.x -= cos(spriteData.angle)*shipNS::SPEED;
-	if (velocity.y < shipNS::MINSPEED)
+		velocity.y -= sin(spriteData.angle)*playershipNS::SPEED;
+		velocity.x -= cos(spriteData.angle)*playershipNS::SPEED;
+	if (velocity.y < playershipNS::MINSPEED)
 		{
-			velocity.y = shipNS::MINSPEED;
+			velocity.y = playershipNS::MINSPEED;
 		}
-		if (velocity.x < shipNS::MINSPEED)
+		if (velocity.x < playershipNS::MINSPEED)
 		{
-			velocity.x = shipNS::MINSPEED;
+			velocity.x = playershipNS::MINSPEED;
 		}
 	}
 	spriteData.x += frameTime *velocity.x;         // move ship along X 

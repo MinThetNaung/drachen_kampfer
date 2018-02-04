@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #pragma once
 #include "entity.h"
 #include "constants.h"
@@ -31,5 +35,6 @@ public:
 	float setdamage(float d); // set the starting damage
 	float getdamage();
 	float setSpeed(float s);
+	float getSpeed();
 	bool isreflectable(bool t);
 };
