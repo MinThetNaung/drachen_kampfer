@@ -127,13 +127,13 @@ void Drachen::update()
 			bullet.setCurrentFrame(BulletNS::BULLET_START_FRAME);
 			bullet.setX(playership1.getCenterX() - bullet.getWidth() / 2 * bullet.getScale());
 			bullet.setY(playership1.getCenterY() - bullet.getHeight() / 2 * bullet.getScale());
-				bullet.setdamage(playershipNS::BULLETDAMAGE);
-				bullet.setSpeed(playershipNS::BULLETSPEED);
+			bullet.setdamage(playershipNS::BULLETDAMAGE);
+			bullet.setSpeed(playershipNS::BULLETSPEED);
 			bullet.setRadians(playership1.getRadians());
 			bullet.isreflectable(true);
 			Pbulletv.push_back(bullet);
 			playership1.bulletfired(true);
-				playership1.state = STATE_BULLET;
+			playership1.state = STATE_BULLET;
 		}
 	}
 	}
@@ -149,13 +149,13 @@ void Drachen::update()
 			missile.setCurrentFrame(MissileNS::MISSILE_START_FRAME);
 			missile.setX(playership1.getCenterX() - missile.getWidth() / 2 * missile.getScale());
 			missile.setY(playership1.getCenterY() - missile.getHeight() / 2 * missile.getScale());
-				missile.setdamage(playershipNS::MISSILEDAMAGE);
-				missile.setSpeed(playershipNS::MISSILESPEED);
+			missile.setdamage(playershipNS::MISSILEDAMAGE);
+			missile.setSpeed(playershipNS::MISSILESPEED);
 			missile.setRadians(playership1.getRadians());
 			missile.isreflectable(false);
 			Pmissilev.push_back(missile);
 			playership1.missilefired(true);
-				playership1.state = STATE_MISSILE;
+			playership1.state = STATE_MISSILE;
 		}
 	}
 	}
@@ -188,14 +188,14 @@ void Drachen::update()
 			special.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
 			special.setX(playership1.getCenterX() - special.getWidth() / 2 * special.getScale());
 			special.setY(playership1.getCenterY() - special.getHeight() / 2 * special.getScale());
-				special.setdamage(playershipNS::SPECIALDAMAGE);
-				special.setSpeed(playershipNS::SPECIALSPEED);
+			special.setdamage(playershipNS::SPECIALDAMAGE);
+			special.setSpeed(playershipNS::SPECIALSPEED);
 			special.setRadians(playership1.getRadians());
 			special.isreflectable(false);
 			Pspecialv.push_back(special);
 			playership1.specialfired(true);
 			playership1.setpmhealth(playership1.getpmhealth() - 1);
-				playership1.state = STATE_SPECIAL;
+			playership1.state = STATE_SPECIAL;
 			}
 		}
 	}
@@ -306,8 +306,8 @@ void Drachen::update()
 
 	if (playership1.activate == true)
 	{
-		enemy.getX += frameTime * enemyNS::X - shipNS::X;
-		enemy.getY += frameTime * enemyNS::Y - shipNS::Y;
+		enemy.getX += frameTime * enemyNS::X - playershipNS::X;
+		enemy.getY += frameTime * enemyNS::Y - playershipNS::Y;
 
 		if (enemy.isbulletcool() == false)
 		{
