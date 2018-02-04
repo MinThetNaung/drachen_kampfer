@@ -29,6 +29,7 @@ public:
 	void update(float frameTime);
 	//void damage(WEAPON);
 	float setdamage(float d); // set the starting damage
+	float getdamage();
 	float setSpeed(float s);
 	bool isreflectable(bool t);
 };

@@ -10,6 +10,7 @@ namespace MissileNS
 	const int   TEXTURE_COLS = 3;
 	const int   MISSILE_START_FRAME = 0;      // ship1 starts at frame 0
 	const int   MISSILE_END_FRAME = 11;
+
 	//const int   SWORD_START_FRAME = 0;      // sword start
 	//const int   SWORD_END_FRAME = 4;
 	//const float SWORD_ANIMATION_DELAY = 0.3f;

@@ -298,22 +298,84 @@ void Drachen::collisions()
 	{
 		Bullet &tempbullet = Pbulletv[d];
 		Bullet *tmpBulletPointer = &tempbullet;
-		if (bullet.collidesWith(enemy, collisionVector))
+		// enemy collide
+		for (unsigned e = 0; e < Enemyv.size(); e++)
 		{
-				// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
-			Pbulletv.erase(Pbulletv.begin() + d);
-			tmpBulletPointer = NULL;
+			Enemy &tempenemy = Enemyv[e];
+			Enemy *tmpEnemyPointer = &tempenemy;
+			if (tempbullet.collidesWith(tempenemy, collisionVector))
+			{
+				//tempenemy.setchealth() = tempenemy.getchealth() - tempbullet.getdamage()
+				Pbulletv.erase(Pbulletv.begin() + d);
+				tmpBulletPointer = NULL;
+			}
+			
+		}
+		//reflect collide
+		for (unsigned e = 0; e < Preflectorv.size(); e++)
+		{
+			Reflector &tempreflector = Preflectorv[e];
+			Reflector *tmpReflectorPointer = &tempreflector;
+			if (tempbullet.collidesWith(tempreflector, collisionVector))
+			{
+				tempbullet.bounce(collisionVector, tempreflector);
+			}
 		}
 	}
 	for (unsigned d = 0; d < Pmissilev.size(); d++)
 	{
 		Missile &tempmissile = Pmissilev[d];
 		Missile *tmpMissilePointer = &tempmissile;
-		if (bullet.collidesWith(enemy, collisionVector))
+		for (unsigned e = 0; e < Enemyv.size(); e++)
 		{
-			// if bullet collideswith	 tempbullet.collidesWith(enemy, collisionVector) {
-			Pmissilev.erase(Pmissilev.begin() + d);
-			tmpMissilePointer = NULL;
+			Enemy &tempenemy = Enemyv[e];
+			Enemy *tmpEnemyPointer = &tempenemy;
+			if (tempmissile.collidesWith(tempenemy, collisionVector))
+			{
+				//tempenemy.setchealth() = tempenemy.getchealth() - tempmissile.getdamage()
+				Pmissilev.erase(Pmissilev.begin() + d);
+				tmpMissilePointer = NULL;
+			}
+		}
+		for (unsigned e = 0; e < Preflectorv.size(); e++)
+		{
+			Reflector &tempreflector = Preflectorv[e];
+			Reflector *tmpReflectorPointer = &tempreflector;
+			if (tempmissile.collidesWith(tempreflector, collisionVector))
+			{
+				Pmissilev.erase(Pmissilev.begin() + d);
+				tmpMissilePointer = NULL;
+				Preflectorv.erase(Preflectorv.begin() + e);
+				tmpReflectorPointer = NULL;
+			}
+		}
+	}
+	for (unsigned d = 0; d < Pspecialv.size(); d++)
+	{
+		Special &tempspecial = Pspecialv[d];
+		Special *tmpSpecialPointer = &tempspecial;
+		for (unsigned e = 0; e < Enemyv.size(); e++)
+		{
+			Enemy &tempenemy = Enemyv[e];
+			Enemy *tmpEnemyPointer = &tempenemy;
+			if (tempspecial.collidesWith(tempenemy, collisionVector))
+			{
+				//tempenemy.setchealth() = tempenemy.getchealth() - tempspecial.getdamage()
+				Pspecialv.erase(Pspecialv.begin() + d);
+				tmpSpecialPointer = NULL;
+			}
+		}
+		for (unsigned e = 0; e < Preflectorv.size(); e++)
+		{
+			Reflector &tempreflector = Preflectorv[e];
+			Reflector *tmpReflectorPointer = &tempreflector;
+			if (tempspecial.collidesWith(tempreflector, collisionVector))
+			{
+				Pspecialv.erase(Pspecialv.begin() + d);
+				tmpSpecialPointer = NULL;
+				Preflectorv.erase(Preflectorv.begin() + e);
+				tmpReflectorPointer = NULL;
+			}
 		}
 	}
 

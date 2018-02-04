@@ -68,16 +68,16 @@ public:
 	void missilefired(bool t);
 	bool isreflectorcool();
 	void reflectorfired(bool t);
+
+	D3DXVECTOR3 position;
+	bool IsInitialized();
+
 	bool isspecialcool();
 	void specialfired(bool t);
 	int getpchealth();
 	void setpchealth(int i);
 	int getpmhealth();
 	void setpmhealth(int i);
-
-	D3DXVECTOR3 position;
-	bool IsInitialized();
-
     // inherited member functions
     virtual void draw();
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,

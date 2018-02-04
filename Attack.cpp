@@ -20,6 +20,10 @@ float Attack::setdamage(float d)
 	Damage = d;
 	return Damage;
 }
+float Attack::getdamage()
+{
+	return Damage;
+}
 float Attack::setSpeed(float s)
 {
 	Speed = s;

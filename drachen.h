@@ -65,6 +65,7 @@ private:
 	vector<Missile>Emissilev = {};
 	vector<Reflector>Preflectorv = {};
 	vector<Special>Pspecialv = {};
+	vector<Enemy>Enemyv = {};
     Image   background;         // backdrop image
 	int cameraX;
 	int cameraY;
