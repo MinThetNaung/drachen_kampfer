@@ -66,6 +66,10 @@ public:
 	void missilefired(bool t);
 	bool isreflectorcool();
 	void reflectorfired(bool t);
+
+	D3DXVECTOR3 position;
+	bool IsInitialized();
+
     // inherited member functions
     virtual void draw();
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,
