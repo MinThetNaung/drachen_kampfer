@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #include"Bullet.h"
 
 Bullet::Bullet()
@@ -9,6 +13,10 @@ Bullet::Bullet()
 	spriteData.y = BulletNS::Y;
 	spriteData.rect.bottom = BulletNS::HEIGHT;    // rectangle to select parts of an image
 	spriteData.rect.right = BulletNS::WIDTH;
+	edge.top = BulletNS::HEIGHT / 2 * -1;             // ROTATED_BOX collision edges
+	edge.bottom = BulletNS::HEIGHT / 2;
+	edge.left = BulletNS::WIDTH / 2 * -1;
+	edge.right = BulletNS::WIDTH / 2;
 	velocity.x = 0;                             // velocity X
 	velocity.y = 0;
 	currentFrame = startFrame;

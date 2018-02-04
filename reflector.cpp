@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #include"Reflector.h"
 
 Reflector::Reflector()
@@ -9,9 +13,10 @@ Reflector::Reflector()
 	spriteData.y = ReflectorNS::Y;
 	spriteData.rect.bottom = ReflectorNS::HEIGHT;    // rectangle to select parts of an image
 	spriteData.rect.right = ReflectorNS::WIDTH;
+	radius = ReflectorNS::WIDTH*spriteData.scale;
 	velocity.x = 0;                             // velocity X
 	velocity.y = 0;
-	collisionType = entityNS::ROTATED_BOX;
+	collisionType = entityNS::CIRCLE;
 }
 
 void Reflector::draw()

@@ -1,7 +1,7 @@
-// Programming 2D Games
-// Copyright (c) 2011 by: 
-// Charles Kelly
-// Chapter 6 ship.h v1.0
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 
 #ifndef _PLAYERSHIP_H                 // Prevent multiple definitions if this 
 #define _PLAYERSHIP_H                 // file is included in more than one place
@@ -14,7 +14,7 @@
 #include "Bullet.h"
 
 using namespace std;
-namespace shipNS
+namespace playershipNS
 {
     const int WIDTH = 160;                   // image width
     const int HEIGHT = 160;                  // image height
@@ -38,6 +38,14 @@ namespace shipNS
 	const int MISSILECOOLDOWN = 500;
 	const int REFLECTORCOOLDOWN = 10000;
 	const int SPECIALCOOLDOWN = 50000;
+	const float BULLETDAMAGE = 5;
+	const float BULLETSPEED = 50;
+	const float MISSILEDAMAGE = 10;
+	const float MISSILESPEED = 30;
+	const float SPECIALDAMAGE = 50;
+	const float SPECIALSPEED = 50;
+	
+
 }
 
 // inherits from Entity class
@@ -46,7 +54,7 @@ class playership : public Entity
 private:
 	MovementComponent movecomponent;
 	HealthComponent healthcomponent;
-	int regencount = 0;
+	
 	bool bulletcool = false;
 	int bulletcooldown = 0;
 	bool missilecool = false;
@@ -68,16 +76,17 @@ public:
 	void missilefired(bool t);
 	bool isreflectorcool();
 	void reflectorfired(bool t);
-
+	State state;
 	D3DXVECTOR3 position;
 	bool IsInitialized();
-
+	int regencount = 0;
 	bool isspecialcool();
 	void specialfired(bool t);
 	int getpchealth();
 	void setpchealth(int i);
 	int getpmhealth();
 	void setpmhealth(int i);
+
     // inherited member functions
     virtual void draw();
     virtual bool initialize(Game *gamePtr, int width, int height, int ncols,

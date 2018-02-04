@@ -1,8 +1,7 @@
-// Programming 2D Games
-// Copyright (c) 2011 by: 
-// Charles Kelly
-// Chapter 6 constants.h v1.0
-
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #ifndef _CONSTANTS_H            // Prevent multiple definitions if this 
 #define _CONSTANTS_H            // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
@@ -45,7 +44,6 @@ const float GRAVITY = 6.67428e-11f;             // gravitational constant
 const float MASS_PLANET = 1.0e14f;
 const float MASS_SHIP = 5.0f;
 const float playerregen = 600;
-const int Pbulletcooldown = 10;
 // graphic images
 const char BACKGROUND_IMAGE[] =   "pictures\\bg_version1.png";     // photo source NASA/courtesy of nasaimages.org 
 const char TEXTURES_IMAGE[] = "pictures\\textures.png";  // game textures
@@ -71,5 +69,5 @@ const UCHAR ENTER_KEY    = VK_RETURN;       // Enter key
 #define VK_KEY_L    0x4C
 // weapon types
 enum WEAPON {TORPEDO, SHIP, PLANET};
-
+enum State { STATE_NORMAL, STATE_BULLET, STATE_MISSILE, STATE_SPECIAL };
 #endif

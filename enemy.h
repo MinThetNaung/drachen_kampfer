@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #pragma once
 
 #ifndef _ENEMY_H            // Prevent multiple definitions if this 

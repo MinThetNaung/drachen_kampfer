@@ -1,7 +1,7 @@
-// Programming 2D Games
-// Copyright (c) 2011,2012 by: 
-// Charles Kelly
-// input.h v1.1
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 
 #ifndef _INPUT_H                // Prevent multiple definitions if this 
 #define _INPUT_H                // file is included in more than one place

@@ -1,3 +1,7 @@
+//  Module:             Gameplay Programming
+//  Assignment1:        Drachen kamper
+//  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
+//  Student Number:     S10171537F, S10167279K, S10167248B
 #include"Missile.h"
 
 Missile::Missile()
@@ -9,9 +13,13 @@ Missile::Missile()
 	spriteData.y = MissileNS::Y;
 	spriteData.rect.bottom = MissileNS::HEIGHT;    // rectangle to select parts of an image
 	spriteData.rect.right = MissileNS::WIDTH;
+	edge.top = MissileNS::HEIGHT / 2 * -1;             // ROTATED_BOX collision edges
+	edge.bottom = MissileNS::HEIGHT / 2;
+	edge.left = MissileNS::WIDTH / 2 * -1;
+	edge.right = MissileNS::WIDTH / 2;
 	velocity.x = 0;                             // velocity X
 	velocity.y = 0;
-	collisionType = entityNS::ROTATED_BOX;
+	collisionType = entityNS::BOX;
 }
 
 void Missile::draw()
