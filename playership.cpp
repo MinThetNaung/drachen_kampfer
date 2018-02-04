@@ -29,7 +29,6 @@ playership::playership() : Entity()
     collisionType = entityNS::ROTATED_BOX;
 	healthcomponent.setmhealth(5);
 	healthcomponent.setchealth(healthcomponent.getmhealth());
-	
 }
 
 bool playership::isbulletcool()
@@ -62,7 +61,38 @@ bool playership::isreflectorcool()
 void playership::reflectorfired(bool t)
 {
 	reflectorcool = t;
-	reflectorcool = shipNS::REFLECTORCOOLDOWN;
+	reflectorcooldown = shipNS::REFLECTORCOOLDOWN;
+}
+
+bool playership::isspecialcool()
+{
+	return specialcool;
+}
+
+void playership::specialfired(bool t)
+{
+	specialcool = t;
+	specialcooldown = shipNS::SPECIALCOOLDOWN;
+}
+
+int playership::getpchealth()
+{
+	return healthcomponent.getchealth();
+}
+
+void playership::setpchealth(int i)
+{
+	healthcomponent.setchealth(i);
+}
+
+int playership::getpmhealth()
+{
+	return healthcomponent.getmhealth();
+}
+
+void playership::setpmhealth(int i)
+{
+	healthcomponent.setmhealth(i);
 }
 
 //=============================================================================
@@ -102,7 +132,7 @@ void playership::update(float frameTime)
 
 	Entity::update(frameTime);
 	healthcomponent.update();
-	// rotate the ship
+	// Health regen
 	if (healthcomponent.getchealth() <= healthcomponent.getmhealth())
 	{
 		regencount++;
@@ -113,6 +143,12 @@ void playership::update(float frameTime)
 		}
 
 	}
+	// health check
+	if (healthcomponent.getchealth() > healthcomponent.getmhealth())
+	{
+		healthcomponent.setchealth(healthcomponent.getmhealth());
+	}
+	//skill cool down
 	if (bulletcool == true)
 	{
 		bulletcooldown--;
@@ -137,6 +173,22 @@ void playership::update(float frameTime)
 			reflectorcool = false;
 		}
 	}
+	if (specialcool == true)
+	{
+		specialcooldown--;
+		if (specialcooldown <= 0)
+		{
+			specialcool = false;
+		}
+	}
+	if (input->isKeyDown(VK_KEY_L))           // if move right front os 0
+	{
+		if (specialcool == false)
+		{
+
+		}
+	}
+	//movement rotate
 	if (input->isKeyDown(VK_KEY_D))           // if move right front os 0
 	{
 		spriteData.angle += frameTime * shipNS::ROTATION_RATE;

@@ -69,6 +69,8 @@ void Drachen::initialize(HWND hwnd)
 
 	if (!reflectorTextures.initialize(graphics, REFLECTOR_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing reflector textures"));
+	if (!specialTextures.initialize(graphics, SPECIAL_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing special textures"));
     // planet
     //if (!planet.initialize(this, planetNS::WIDTH, planetNS::HEIGHT, 2, &gameTextures))
         //throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing planet"));
@@ -167,6 +169,26 @@ void Drachen::update()
 			playership1.reflectorfired(true);
 		}
 	}
+	if (input->isKeyDown(VK_KEY_L))  //I         // if move right FSM forward declaration
+	{
+		if (playership1.isspecialcool() == false)
+		{
+			if (!special.initialize(this, SpecialNS::WIDTH, SpecialNS::HEIGHT, SpecialNS::TEXTURE_COLS, &specialTextures))
+				throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing special"));
+			special.setFrames(SpecialNS::SPECIAL_START_FRAME, SpecialNS::SPECIAL_END_FRAME);
+			special.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
+			special.setX(playership1.getCenterX() - special.getWidth() / 2 * special.getScale());
+			special.setY(playership1.getCenterY() - special.getHeight() / 2 * special.getScale());
+			special.setdamage(50);
+			special.setSpeed(30);
+			special.setRadians(playership1.getRadians());
+			special.isreflectable(false);
+			Pspecialv.push_back(special);
+			playership1.specialfired(true);
+			playership1.setpmhealth(playership1.getpmhealth() - 1);
+
+		}
+	}
 	//Player skills
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
@@ -183,6 +205,12 @@ void Drachen::update()
 		Reflector &tempreflector = Preflectorv[d];
 		tempreflector.update(frameTime);
 	}
+	for (unsigned d = 0; d < Pspecialv.size(); d++)
+	{
+		Special &tempspecial = Pspecialv[d];
+		tempspecial.update(frameTime);
+	}
+
 /*
 	if (playership1X < 0)
 	{
@@ -335,6 +363,11 @@ void Drachen::render()
 	{
 		Reflector &tempreflector = Preflectorv[d];
 		tempreflector.draw();
+	}
+	for (unsigned d = 0; d < Pspecialv.size(); d++)
+	{
+		Special &tempspecial = Pspecialv[d];
+		tempspecial.draw();
 	}
     graphics->spriteEnd();                  // end drawing sprites
 }

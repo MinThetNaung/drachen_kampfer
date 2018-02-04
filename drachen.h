@@ -16,6 +16,7 @@
 #include "Bullet.h"
 #include "Missile.h"
 #include "reflector.h"
+#include "special.h"
 namespace drachenNS
 {
 	const char FONT[] = "Arial Bold";  // font
@@ -49,6 +50,7 @@ private:
 	TextureManager enemyTextures;
 	TextureManager missileTextures;
 	TextureManager reflectorTextures;
+	TextureManager specialTextures;
     playership    playership1;           // spaceships
     Planet  planet;         // the planet
     Image   nebula;         // backdrop image
@@ -56,11 +58,13 @@ private:
 	Bullet bullet;
 	Missile missile;
 	Reflector reflector;
+	Special special;
 	vector<Bullet>Pbulletv = {};
 	vector<Bullet>Ebulletv = {};
 	vector<Missile>Pmissilev = {};
 	vector<Missile>Emissilev = {};
 	vector<Reflector>Preflectorv = {};
+	vector<Special>Pspecialv = {};
     Image   background;         // backdrop image
 	int cameraX;
 	int cameraY;
