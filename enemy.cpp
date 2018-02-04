@@ -7,7 +7,7 @@ using namespace enemyNS;
 Enemy::Enemy() : Entity()
 {
 	spriteData.scale = 0.3;
-	spriteData.width = WIDTH;           // size of butterfly
+	spriteData.width = WIDTH;           // size of enemy
 	spriteData.height = HEIGHT;
 	spriteData.x = X;                   // location on screen
 	spriteData.y = Y;
@@ -21,11 +21,23 @@ Enemy::Enemy() : Entity()
 	velocity.y = 0;
 	frameDelay = ENEMY_ANIMATION_DELAY;
 	startFrame = ENEMY_START_FRAME;     // first frame of animation
-	endFrame = ENEMY_END_FRAME;     // last frame of animationaa
+	endFrame = ENEMY_END_FRAME;     // last frame of animation
 	currentFrame = startFrame;
 	radius = WIDTH / 2.0;
 	collisionType = entityNS::ROTATED_BOX;
 	mass = enemyNS::MASS;
+	healthcomponent.setmhealth(2);
+}
+
+bool Enemy::isbulletcool()
+{
+	return bulletcool;
+}
+
+void Enemy::bulletfired(bool t)
+{
+	bulletcool = t;
+	bulletcooldown = enemyNS::BULLETCOOLDOWN;
 }
 
 //=============================================================================
@@ -67,5 +79,28 @@ void Enemy::update(float frameTime)
 		spriteData.x = 0;                           // position at left screen edge
 		velocity.x = -velocity.x;                   // reverse X direction
 	}
-	spriteData.x += velocity.x * frameTime;
+
+	spriteData.y += frameTime * velocity.y;         // move player along y 
+
+													// Bounce off walls
+	if (spriteData.y > GAME_HEIGHT - enemyNS::HEIGHT)    // if hit top screen edge
+	{
+		spriteData.y = GAME_HEIGHT - enemyNS::HEIGHT;    // position at top screen edge
+		velocity.y = -velocity.y;                   // reverse y direction
+	}
+	else if (spriteData.y < 0)                    // else if hit bottom screen edge
+	{
+		spriteData.y = 0;                           // position at bottom screen edge
+		velocity.y = -velocity.y;                   // reverse y direction
+	}
+	spriteData.y += velocity.y * frameTime;
+
+	if (bulletcool == true)
+	{
+		bulletcooldown--;
+		if (bulletcooldown <= 0)
+		{
+			bulletcool = false;
+		}
+	}
 }

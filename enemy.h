@@ -6,6 +6,9 @@
 
 #include "entity.h"
 #include "constants.h"
+#include "Movementcomponent.h"
+#include "Healthcomponent.h"
+#include "Bullet.h"
 
 namespace enemyNS
 {
@@ -20,23 +23,31 @@ namespace enemyNS
 	const float ROTATION_RATE = (float)2 * PI; // radians per second
 	const float SPEED = 50;                 // pixels per second
 	const float MAX_SPEED = 100;
-	const float MASS = 3.0f;                // mass
+	const float MASS = 300.0f;                // mass
 	const int   TEXTURE_COLS = 1;			// texture has 1 columns
 	const int   ENEMY_START_FRAME = 0;     // animation starting frame
 	const int   ENEMY_END_FRAME = 0;       // animation ending frame
 	const float ENEMY_ANIMATION_DELAY = 0.1f;    // time between frames
+	const int BULLETCOOLDOWN = 100;
+	const float angle = 0;
 }
 
 // inherits from Entity class
 class Enemy : public Entity
 {
 private:
+	MovementComponent movecomponent;
+	HealthComponent healthcomponent;
 	float   oldX, oldY, oldAngle;
 	float   rotation;                       // current rotation rate (radians/second)
+	bool bulletcool = false;
+	int bulletcooldown = 0;
 
 public:
 	// constructor
 	Enemy();
+	bool isbulletcool();
+	void bulletfired(bool t);
 
 	void draw();
 
