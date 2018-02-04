@@ -270,3 +270,8 @@ void playership::update(float frameTime)
     //shieldOn = true;
 //}
 
+bool playership::IsInitialized()
+{
+	//Are we initialized (have a texture and sprite)
+	return initialized;
+}

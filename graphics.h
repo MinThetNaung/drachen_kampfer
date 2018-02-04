@@ -224,6 +224,9 @@ public:
     {
         sprite->End();
     }
+
+	//public pointer
+	LPDIRECT3DDEVICE9 device;
 };
 
 #endif
