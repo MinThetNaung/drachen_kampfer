@@ -304,7 +304,7 @@ void Drachen::update()
 
 	//enemy skills
 
-	if (playership1.activate == true)
+/*	if (playership1.activate == true)
 	{
 		enemy.getX += frameTime * enemyNS::X - playershipNS::X;
 		enemy.getY += frameTime * enemyNS::Y - playershipNS::Y;
@@ -325,6 +325,7 @@ void Drachen::update()
 			enemy.bulletfired(true);
 		}
 	}
+	*/
 	
 }
 
