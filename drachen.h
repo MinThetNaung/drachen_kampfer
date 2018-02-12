@@ -31,11 +31,18 @@ namespace drachenNS
 	const int SCREEN_WIDTH = 1024 * SCREEN_SCALE;  // width of scaled space image
 	const int SCREEN_HEIGHT = 768 * SCREEN_SCALE; // height of scaled space image
 
-	const float SHIP_LIMIT_LEFT = GAME_WIDTH / 8;
+
+
+	const float SHIP_LIMIT_LEFT = GAME_WIDTH / 120;
+	const float SHIP_LIMIT_RIGHT = GAME_WIDTH + GAME_WIDTH / 14 - playershipNS::WIDTH;;
+	const float SHIP_LIMIT_TOP = GAME_HEIGHT / 120;
+	const float SHIP_LIMIT_BOTTOM = GAME_HEIGHT + GAME_HEIGHT / 12 - playershipNS::HEIGHT;
+
+	/*const float SHIP_LIMIT_LEFT = GAME_WIDTH / 8;
 	const float SHIP_LIMIT_RIGHT = GAME_WIDTH - GAME_WIDTH / 8 - playershipNS::WIDTH;
 	const float SHIP_LIMIT_TOP = GAME_HEIGHT / 8;
 	const float SHIP_LIMIT_BOTTOM = GAME_HEIGHT - GAME_HEIGHT / 8 - playershipNS::HEIGHT;
-
+	*/
 	/*int cameraX = 0;    // camera x position
 	int cameraY = 0;     // camera y position
 
