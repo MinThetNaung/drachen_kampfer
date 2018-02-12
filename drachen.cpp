@@ -43,10 +43,6 @@ void Drachen::initialize(HWND hwnd)
 	if (!backgroundTexture.initialize(graphics, BACKGROUND_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
 
-    // main game textures
-	if (!gameTextures.initialize(graphics, TEXTURES_IMAGE))
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
-
 	// enemy textures
 	if (!enemyTextures.initialize(graphics, ENEMY_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy textures"));
