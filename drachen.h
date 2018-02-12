@@ -7,6 +7,9 @@
 #define _Drachen_H             // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
+#include <string>
+#include <time.h>
+#include <fstream>
 #include "game.h"
 #include "textureManager.h"
 #include "image.h"
@@ -23,6 +26,15 @@ namespace drachenNS
 	const int FONT_SCORE_SIZE = 48;
 	const COLOR_ARGB FONT_COLOR = graphicsNS::YELLOW;
 	const COLOR_ARGB SHIP1_COLOR = graphicsNS::BLUE;
+
+	const int SCREEN_SCALE = 1;                  // scale factor of space image
+	const int SCREEN_WIDTH = 1024 * SCREEN_SCALE;  // width of scaled space image
+	const int SCREEN_HEIGHT = 768 * SCREEN_SCALE; // height of scaled space image
+
+	const float SHIP_LIMIT_LEFT = GAME_WIDTH / 8;
+	const float SHIP_LIMIT_RIGHT = GAME_WIDTH - GAME_WIDTH / 8 - playershipNS::WIDTH;
+	const float SHIP_LIMIT_TOP = GAME_HEIGHT / 8;
+	const float SHIP_LIMIT_BOTTOM = GAME_HEIGHT - GAME_HEIGHT / 8 - playershipNS::HEIGHT;
 
 	/*int cameraX = 0;    // camera x position
 	int cameraY = 0;     // camera y position
@@ -41,17 +53,17 @@ namespace drachenNS
 class Drachen : public Game
 {
 private:
-    // game items
-    TextureManager backgroundTexture;   // Background texture
-    TextureManager gameTextures;    // game texture
+	// game items
+	TextureManager backgroundTexture;   // Background texture
+										//TextureManager gameTextures;    // game texture
 	TextureManager playershipTextures;
 	TextureManager bulletTextures;
 	TextureManager enemyTextures;
 	TextureManager missileTextures;
 	TextureManager reflectorTextures;
 	TextureManager specialTextures;
-    playership    playership1;           // spaceships
-    Image   nebula;         // backdrop image
+	playership    playership1;           // spaceships
+	Image   background;         // backdrop image
 	Enemy enemy;
 	Bullet bullet;
 	Missile missile;
@@ -64,29 +76,29 @@ private:
 	vector<Reflector>Preflectorv = {};
 	vector<Special>Pspecialv = {};
 	vector<Enemy>Enemyv = {};
-    Image   background;         // backdrop image
-	int cameraX;
-	int cameraY;
+	//Image   background;         // backdrop image
+	//int cameraX;
+	//int cameraY;
 	//int screenWidth;
 	//int screenHeight;
 
 
 
 public:
-    // Constructor
-    Drachen();
+	// Constructor
+	Drachen();
 
-    // Destructor
-    virtual ~Drachen();
+	// Destructor
+	virtual ~Drachen();
 
-    // Initialize the game
-    void initialize(HWND hwnd);
-    void update();      // must override pure virtual from Game
-    void ai();          // "
-    void collisions();  // "
-    void render();      // "
-    void releaseAll();
-    void resetAll();
+	// Initialize the game
+	void initialize(HWND hwnd);
+	void update();      // must override pure virtual from Game
+	void ai();          // "
+	void collisions();  // "
+	void render();      // "
+	void releaseAll();
+	void resetAll();
 };
 
 #endif
