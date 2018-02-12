@@ -10,7 +10,6 @@
 #include "game.h"
 #include "textureManager.h"
 #include "image.h"
-#include "planet.h"
 #include "playership.h"
 #include "enemy.h"
 #include "Bullet.h"
@@ -52,7 +51,6 @@ private:
 	TextureManager reflectorTextures;
 	TextureManager specialTextures;
     playership    playership1;           // spaceships
-    Planet  planet;         // the planet
     Image   nebula;         // backdrop image
 	Enemy enemy;
 	Bullet bullet;
