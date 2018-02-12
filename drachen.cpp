@@ -304,7 +304,7 @@ void Drachen::update()
 
 	//enemy skills
 
-	if (playership1.activate == true)
+	/*if (playership1.activate == true)
 	{
 		enemy.getX += frameTime * enemyNS::X - playershipNS::X;
 		enemy.getY += frameTime * enemyNS::Y - playershipNS::Y;
@@ -324,7 +324,7 @@ void Drachen::update()
 			Pbulletv.push_back(bullet);
 			enemy.bulletfired(true);
 		}
-	}
+	}*/
 }
 
 //=============================================================================
@@ -364,13 +364,14 @@ void Drachen::collisions()
 			Reflector *tmpReflectorPointer = &tempreflector;
 			if (tempbullet.collidesWith(tempreflector, collisionVector))
 			{
-
+				
 				float angle = atan2(tempreflector.getCenterY() - tempbullet.getCenterY(), tempreflector.getCenterX() - tempbullet.getCenterX());
 				tempbullet.setRadians(tempbullet.getRadians() + angle);
+				//tempbullet.setVelocity();
 				/*tempbullet.flipHorizontal(true);
-				tempbullet.flipVertical(true);
-				tempbullet.setVelocity(tempbullet.getVelocity()*-1);
-				tempbullet.setSpeed(tempbullet.getSpeed() *-1);*/
+				tempbullet.flipVertical(true);*/
+				//tempbullet.setVelocity(tempbullet.getVelocity());
+				//tempbullet.setSpeed(tempbullet.getSpeed() *-1);
 
 				/*double distPerpWall = (tempbullet.getCenterX() * tempreflector.getCenterX() + tempbullet.getCenterY * tempreflector.getCenterY()) / hypot(tempreflector.getCenterX(), tempreflector.getCenterY());
 				double distParWall = (tempbullet.getCenterX() * tempreflector.getCenterX() + tempbullet.getCenterY * tempreflector.getCenterY()) / hypot(tempreflector.getCenterX(), -tempreflector.getCenterY());

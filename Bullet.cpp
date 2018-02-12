@@ -21,6 +21,7 @@ Bullet::Bullet()
 	velocity.y = 0;
 	currentFrame = startFrame;
 	collisionType = entityNS::ROTATED_BOX;
+	reflectable = true;
 }
 
 void Bullet::draw()
@@ -36,8 +37,9 @@ bool Bullet::initialize(Game * gamePtr, int width, int height, int ncols, Textur
 void Bullet::update(float frameTime)
 {
 	Entity::update(frameTime);
-	velocity.y += sin(spriteData.angle)*Speed;
-	velocity.x += cos(spriteData.angle)*Speed;
+	velocity.y = sin(spriteData.angle)*Speed;
+	velocity.x = cos(spriteData.angle)*Speed;
 	spriteData.x += frameTime *velocity.x;         // move bullet along X 
 	spriteData.y += frameTime *velocity.y;
 }
+
