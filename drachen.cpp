@@ -36,28 +36,33 @@ Drachen::~Drachen()
 //=============================================================================
 void Drachen::initialize(HWND hwnd)
 {
+	//int randX, randY;
     Game::initialize(hwnd); // throws GameError
 	if (!playershipTextures.initialize(graphics, SHIP_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing characters textures"));
-    // nebula texture
+	// background texture
 	if (!backgroundTexture.initialize(graphics, BACKGROUND_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
 
     // main game textures
-	if (!gameTextures.initialize(graphics, TEXTURES_IMAGE))
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+	//	if (!gameTextures.initialize(graphics, TEXTURES_IMAGE))
+	//      throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
 	// enemy textures
 	if (!enemyTextures.initialize(graphics, ENEMY_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy textures"));
 
-    // nebula image
+
+
+
+	// background image
 	if (!background.initialize(graphics, 0, 0, 0, &backgroundTexture))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula"));
+	background.setScale((float)::SCREEN_SCALE);
 
 	// enemy image
-	if (!enemy.initialize(this, 0, 0, 0, &enemyTextures))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
+	//if (!enemy.initialize(this, 0, 0, 0, &enemyTextures))
+	//throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
 
 	if (!bulletTextures.initialize(graphics, BULLET_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bullet textures"));
@@ -76,15 +81,17 @@ void Drachen::initialize(HWND hwnd)
     // ship
     if (!playership1.initialize(this, playershipNS::WIDTH, playershipNS::HEIGHT, 0, &playershipTextures))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing ship1"));
-	//playership1.setFrames(shipNS::SHIP1_START_FRAME, shipNS::SHIP1_END_FRAME);
+	//playership1.setFrames(playershipNS::SHIP1_START_FRAME, playershipNS::SHIP1_END_FRAME);
 	playership1.setCurrentFrame(playershipNS::SHIP1_START_FRAME);
 	//playership1.setX(GAME_WIDTH /4);
 	//playership1.setY(GAME_HEIGHT/4);
 	//To set the player ship in the center
-	playership1.setX(GAME_WIDTH / 2 - playershipNS::WIDTH /2 );
-	playership1.setY(GAME_HEIGHT /2 - playershipNS::HEIGHT/2);
+	playership1.setX(GAME_WIDTH / 2 - playershipNS::WIDTH / 2);
+	playership1.setY(GAME_HEIGHT / 2 - playershipNS::HEIGHT / 2);
 	playership1.state = STATE_NORMAL;
-    //ship1.setVelocity(VECTOR2(shipNS::SPEED,-shipNS::SPEED)); // VECTOR2(X, Y)
+	playership1.setMass(playershipNS::MASS);
+
+	playership1.setVelocity(VECTOR2(playershipNS::SPEED, -playershipNS::SPEED)); // VECTOR2(X, Y)
     // ship2
     
 	// enemy
@@ -137,7 +144,7 @@ void Drachen::update()
 		}
 	}
 	}
-	if (input->isKeyDown(VK_KEY_O ))  //I         // if move right FSM forward declaration
+	if (input->isKeyDown(VK_KEY_O))  //I         // if move right FSM forward declaration
 	{
 		if (playership1.state == STATE_NORMAL || playership1.state == STATE_MISSILE)
 		{
@@ -324,7 +331,49 @@ void Drachen::update()
 			Pbulletv.push_back(bullet);
 			enemy.bulletfired(true);
 		}
-	}*/
+	}
+	*/
+
+	//if the playership at screen edge
+	if ((playership1.getX() < SHIP_LIMIT_LEFT) || (playership1.getX() > SHIP_LIMIT_RIGHT))
+	{
+		// move background
+		background.setX(background.getX() - frameTime * playership1.getVelocity().x);
+
+		// keep playership on screen
+		if (playership1.getX() < SHIP_LIMIT_LEFT)
+			playership1.setX(SHIP_LIMIT_LEFT);
+		if (playership1.getX() > SHIP_LIMIT_RIGHT)
+			playership1.setX(SHIP_LIMIT_RIGHT);
+	}
+	if ((playership1.getY() < SHIP_LIMIT_TOP) || (playership1.getY() > SHIP_LIMIT_BOTTOM))
+	{
+		// move background
+		background.setY(background.getY() - frameTime * playership1.getVelocity().y);
+		// keep playership on screen
+		if (playership1.getY() < SHIP_LIMIT_TOP)
+			playership1.setY(SHIP_LIMIT_TOP);
+		if (playership1.getY() > SHIP_LIMIT_BOTTOM)
+			playership1.setY(SHIP_LIMIT_BOTTOM);
+	}
+
+	// Wrap space image around at edge
+	// if left edge of background > screen left edge
+	if (background.getX() > 0)
+		// move background image left by SCREEN_WIDTH
+		background.setX(background.getX() - ::SCREEN_WIDTH);
+	// if background image off screen left
+	if (background.getX() < -::SCREEN_WIDTH)
+		// move background image right by SCREEN_WIDTH
+		background.setX(background.getX() + ::SCREEN_WIDTH);
+	// if top edge of background > screen top edge
+	if (background.getY() > 0)
+		// move background image up by SCREEN_HEIGHT
+		background.setY(background.getY() - ::SCREEN_HEIGHT);
+	// if background image off screen top
+	if (background.getY() < -::SCREEN_HEIGHT)
+		// move background image down by SCREEN_IMAGE
+		background.setY(background.getY() + ::SCREEN_HEIGHT);
 }
 
 //=============================================================================
@@ -364,7 +413,7 @@ void Drachen::collisions()
 			Reflector *tmpReflectorPointer = &tempreflector;
 			if (tempbullet.collidesWith(tempreflector, collisionVector))
 			{
-				
+
 				float angle = atan2(tempreflector.getCenterY() - tempbullet.getCenterY(), tempreflector.getCenterX() - tempbullet.getCenterX());
 				tempbullet.setRadians(tempbullet.getRadians() + angle);
 				//tempbullet.setVelocity();
@@ -475,10 +524,37 @@ void Drachen::collisions()
 //=============================================================================
 void Drachen::render()
 {
+
+
     graphics->spriteBegin();                // begin drawing sprites
 
+
+
+
+	float x = background.getX();
+	float y = background.getY();
+	//wrap image around at edges
     background.draw();                          // add the orion nebula to the scene                       // add the planet to the scene
-    playership1.draw();                           // add the spaceship to the scene
+												// if background image right edge visible
+	if (background.getX() < -::SCREEN_WIDTH + (int)GAME_WIDTH)
+	{
+		background.setX(background.getX() + ::SCREEN_WIDTH); // wrap around to left edge
+		background.draw();                           // draw again
+	}
+	// if background image bottom edge visible
+	if (background.getY() < -::SCREEN_HEIGHT + (int)GAME_HEIGHT)
+	{
+		background.setY(background.getY() + ::SCREEN_HEIGHT); // wrap around to top edge
+		background.draw();                           // draw again
+		background.setX(x);                          // restore x position
+													 // if background image right edge visible
+													 // wrap around to left edge
+		if (background.getX() < -::SCREEN_WIDTH + (int)GAME_WIDTH)
+			background.draw();                       // draw again
+	}
+	background.setY(y);      // restore y position
+
+
 	enemy.draw();
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
@@ -501,6 +577,8 @@ void Drachen::render()
 		Special &tempspecial = Pspecialv[d];
 		tempspecial.draw();
 	}
+
+	playership1.draw();
     graphics->spriteEnd();                  // end drawing sprites
 }
 
@@ -511,7 +589,7 @@ void Drachen::render()
 void Drachen::releaseAll()
 {
     backgroundTexture.onLostDevice();
-    gameTextures.onLostDevice();
+	playershipTextures.onLostDevice();
 	enemyTextures.onLostDevice();
     Game::releaseAll();
     return;
@@ -523,7 +601,7 @@ void Drachen::releaseAll()
 //=============================================================================
 void Drachen::resetAll()
 {
-    gameTextures.onResetDevice();
+	playershipTextures.onResetDevice();
    
 	enemyTextures.onResetDevice();
     backgroundTexture.onResetDevice();
