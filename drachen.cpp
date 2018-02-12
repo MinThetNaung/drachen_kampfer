@@ -364,10 +364,14 @@ void Drachen::collisions()
 			Reflector *tmpReflectorPointer = &tempreflector;
 			if (tempbullet.collidesWith(tempreflector, collisionVector))
 			{
-				tempbullet.flipHorizontal(true);
+
+				float angle = atan2(tempreflector.getCenterY() - tempbullet.getCenterY(), tempreflector.getCenterX() - tempbullet.getCenterX());
+				tempbullet.setRadians(tempbullet.getRadians() + angle);
+				/*tempbullet.flipHorizontal(true);
 				tempbullet.flipVertical(true);
 				tempbullet.setVelocity(tempbullet.getVelocity()*-1);
-				tempbullet.setSpeed(tempbullet.getSpeed() *-1);
+				tempbullet.setSpeed(tempbullet.getSpeed() *-1);*/
+
 				/*double distPerpWall = (tempbullet.getCenterX() * tempreflector.getCenterX() + tempbullet.getCenterY * tempreflector.getCenterY()) / hypot(tempreflector.getCenterX(), tempreflector.getCenterY());
 				double distParWall = (tempbullet.getCenterX() * tempreflector.getCenterX() + tempbullet.getCenterY * tempreflector.getCenterY()) / hypot(tempreflector.getCenterX(), -tempreflector.getCenterY());
 				distPerpWall = -distPerpWall;
@@ -472,8 +476,7 @@ void Drachen::render()
 {
     graphics->spriteBegin();                // begin drawing sprites
 
-    background.draw();                          // add the orion nebula to the scene
-    planet.draw();                          // add the planet to the scene
+    background.draw();                          // add the orion nebula to the scene                       // add the planet to the scene
     playership1.draw();                           // add the spaceship to the scene
 	enemy.draw();
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
