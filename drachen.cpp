@@ -44,6 +44,21 @@ void Drachen::initialize(HWND hwnd)
 	if (!backgroundTexture.initialize(graphics, BACKGROUND_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula texture"));
 
+	// menu texture
+	if (!menuTexture.initialize(graphics, MENU_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu texture"));
+
+	// instruction texture
+	if (!instructionTexture.initialize(graphics, INSTRUCTION_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing instruction texture"));
+
+	// credit texture
+	if (!creditTexture.initialize(graphics, CREDIT_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing credit texture"));
+
+	// cursor texture
+	if (!cursorTexture.initialize(graphics, CURSOR_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing cursor texture"));
 	// main game textures
 	//	if (!gameTextures.initialize(graphics, TEXTURES_IMAGE))
 	//      throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
@@ -59,6 +74,23 @@ void Drachen::initialize(HWND hwnd)
 	if (!background.initialize(graphics, 0, 0, 0, &backgroundTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing nebula"));
 	background.setScale((float)::SCREEN_SCALE);
+
+	//Menu image
+	if (!menuTexture.initialize(graphics, MENU_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menu textures"));
+
+	//Instruction image
+	if (!instructionTexture.initialize(graphics, INSTRUCTION_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing instruction textures"));
+
+	//credit image
+	if (!creditTexture.initialize(graphics, CREDIT_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing credit textures"));
+
+	//cursor image
+	if (!cursorTexture.initialize(graphics, CURSOR_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing cursor textures"));
+
 
 	// enemy image
 	//if (!enemy.initialize(this, 0, 0, 0, &enemyTextures))
@@ -661,6 +693,7 @@ void Drachen::render()
 		tempspecial.draw();
 	}
 
+
 	playership1.draw();
 	graphics->spriteEnd();                  // end drawing sprites
 }
@@ -671,6 +704,10 @@ void Drachen::render()
 //=============================================================================
 void Drachen::releaseAll()
 {
+	menuTexture.onLostDevice();
+	instructionTexture.onLostDevice();
+	creditTexture.onLostDevice();
+	cursorTexture.onLostDevice();
 	backgroundTexture.onLostDevice();
 	playershipTextures.onLostDevice();
 	enemyTextures.onLostDevice();
@@ -684,6 +721,11 @@ void Drachen::releaseAll()
 //=============================================================================
 void Drachen::resetAll()
 {
+
+	menuTexture.onResetDevice();
+	instructionTexture.onResetDevice();
+	creditTexture.onResetDevice();
+	cursorTexture.onResetDevice();
 	playershipTextures.onResetDevice();
 
 	enemyTextures.onResetDevice();

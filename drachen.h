@@ -69,6 +69,15 @@ private:
 	TextureManager missileTextures;
 	TextureManager reflectorTextures;
 	TextureManager specialTextures;
+	TextureManager menuTexture;
+	TextureManager instructionTexture;
+	TextureManager creditTexture;
+	TextureManager cursorTexture;
+
+	Image menu;
+	Image instruction;
+	Image credit;
+	Image cursor;
 	playership    playership1;           // spaceships
 	Image   background;         // backdrop image
 	Enemy enemy;

@@ -53,6 +53,10 @@ const char ENEMY_IMAGE[] = "pictures\\enemy2.png";
 const char MISSILE_IMAGE[] = "pictures\\missile.png";
 const char REFLECTOR_IMAGE[] = "pictures\\reflector.png";
 const char SPECIAL_IMAGE[] = "pictures\\special.png";
+const char MENU_IMAGE[] = "pictures\\Menu.png";
+const char INSTRUCTION_IMAGE[] = "pictures\\Instruction.png";
+const char CREDIT_IMAGE[] = "pictures\\Credit.png";
+const char CURSOR_IMAGE[] = "pictures\\Cursor.png";
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.
