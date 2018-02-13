@@ -39,7 +39,7 @@ namespace playershipNS
 	const int REFLECTORCOOLDOWN = 10000;
 	const int SPECIALCOOLDOWN = 50000;
 	const float BULLETDAMAGE = 5;
-	const float BULLETSPEED = 300;
+	const float BULLETSPEED = 500;
 	const float MISSILEDAMAGE = 10;
 	const float MISSILESPEED = 30;
 	const float SPECIALDAMAGE = 50;
