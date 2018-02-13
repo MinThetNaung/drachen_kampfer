@@ -226,27 +226,29 @@ void playership::update(float frameTime)
 
 		velocity.y += sin(spriteData.angle)*playershipNS::SPEED;
 		velocity.x += cos(spriteData.angle)*playershipNS::SPEED;
-		if (velocity.y > playershipNS::MAXSPEED)
-		{
-			velocity.y = playershipNS::MAXSPEED;
-		}
-		if (velocity.x > playershipNS::MAXSPEED)
-		{
-			velocity.x = playershipNS::MAXSPEED;
-		}
+		
 	}
 	else if (input->isKeyDown(VK_KEY_S))           // if move down
 	{
 		velocity.y -= sin(spriteData.angle)*playershipNS::SPEED;
 		velocity.x -= cos(spriteData.angle)*playershipNS::SPEED;
-		if (velocity.y < playershipNS::MINSPEED)
-		{
-			velocity.y = playershipNS::MINSPEED;
-		}
-		if (velocity.x < playershipNS::MINSPEED)
-		{
-			velocity.x = playershipNS::MINSPEED;
-		}
+		
+	}
+	if (velocity.y > playershipNS::MAXSPEED)
+	{
+		velocity.y = playershipNS::MAXSPEED;
+	}
+	if (velocity.x > playershipNS::MAXSPEED)
+	{
+		velocity.x = playershipNS::MAXSPEED;
+	}
+	if (velocity.y < playershipNS::MINSPEED)
+	{
+		velocity.y = playershipNS::MINSPEED;
+	}
+	if (velocity.x < playershipNS::MINSPEED)
+	{
+		velocity.x = playershipNS::MINSPEED;
 	}
 	spriteData.x += frameTime *velocity.x;         // move ship along X 
 	spriteData.y += frameTime *velocity.y;         // move ship along Y
