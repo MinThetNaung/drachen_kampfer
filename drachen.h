@@ -188,29 +188,7 @@ public:
 				playership1.reflectorfired(true);
 			}
 		}
-		if (input->isKeyDown(VK_KEY_L))  //I         // if move right FSM forward declaration
-		{
-			if (playership1.state == STATE_NORMAL || playership1.state == STATE_SPECIAL)
-			{
-				if (playership1.isspecialcool() == false)
-				{
-					if (!special.initialize(this, SpecialNS::WIDTH, SpecialNS::HEIGHT, SpecialNS::TEXTURE_COLS, &specialTextures))
-						throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing special"));
-					special.setFrames(SpecialNS::SPECIAL_START_FRAME, SpecialNS::SPECIAL_END_FRAME);
-					special.setCurrentFrame(ReflectorNS::REFLECTOR_START_FRAME);
-					special.setX(playership1.getCenterX() - special.getWidth() / 2 * special.getScale());
-					special.setY(playership1.getCenterY() - special.getHeight() / 2 * special.getScale());
-					special.setdamage(playershipNS::SPECIALDAMAGE);
-					special.setSpeed(playershipNS::SPECIALSPEED);
-					special.setRadians(playership1.getRadians());
-					special.isreflectable(false);
-					Pspecialv.push_back(special);
-					playership1.specialfired(true);
-					playership1.setpmhealth(playership1.getpmhealth() - 1);
-					playership1.state = STATE_SPECIAL;
-				}
-			}
-		}
+		
 		if (input->isKeyDown(VK_KEY_I) == false && playership1.state == STATE_BULLET)
 		{
 			playership1.state = STATE_NORMAL;
