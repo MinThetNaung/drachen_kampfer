@@ -19,6 +19,8 @@
 #include "Missile.h"
 #include "reflector.h"
 #include "special.h"
+#include <random>
+
 namespace drachenNS
 {
 	const char FONT[] = "Arial Bold";  // font
@@ -31,11 +33,18 @@ namespace drachenNS
 	const int SCREEN_WIDTH = 1024 * SCREEN_SCALE;  // width of scaled space image
 	const int SCREEN_HEIGHT = 768 * SCREEN_SCALE; // height of scaled space image
 
-	const float SHIP_LIMIT_LEFT = GAME_WIDTH / 8;
+
+
+	const float SHIP_LIMIT_LEFT = GAME_WIDTH / 120;
+	const float SHIP_LIMIT_RIGHT = GAME_WIDTH + GAME_WIDTH / 14 - playershipNS::WIDTH;;
+	const float SHIP_LIMIT_TOP = GAME_HEIGHT / 120;
+	const float SHIP_LIMIT_BOTTOM = GAME_HEIGHT + GAME_HEIGHT / 12 - playershipNS::HEIGHT;
+
+	/*const float SHIP_LIMIT_LEFT = GAME_WIDTH / 8;
 	const float SHIP_LIMIT_RIGHT = GAME_WIDTH - GAME_WIDTH / 8 - playershipNS::WIDTH;
 	const float SHIP_LIMIT_TOP = GAME_HEIGHT / 8;
 	const float SHIP_LIMIT_BOTTOM = GAME_HEIGHT - GAME_HEIGHT / 8 - playershipNS::HEIGHT;
-
+	*/
 	/*int cameraX = 0;    // camera x position
 	int cameraY = 0;     // camera y position
 
@@ -62,9 +71,18 @@ private:
 	TextureManager missileTextures;
 	TextureManager reflectorTextures;
 	TextureManager specialTextures;
+	TextureManager menuTexture;
+	TextureManager instructionTexture;
+	TextureManager creditTexture;
+	TextureManager cursorTexture;
+
+	Image menu;
+	Image instruction;
+	Image credit;
+	Image cursor;
 	playership    playership1;           // spaceships
 	Image   background;         // backdrop image
-	Enemy enemy;
+	Enemy enemy0;
 	Bullet bullet;
 	Missile missile;
 	Reflector reflector;

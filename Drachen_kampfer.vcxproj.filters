@@ -72,6 +72,12 @@
     <ClCompile Include="reflector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textDX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -137,6 +143,12 @@
     <ClInclude Include="special.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textDX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Drachen_kampfer.rc">
@@ -160,6 +172,18 @@
       <Filter>pictures</Filter>
     </Image>
     <Image Include="pictures\missile.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\credit.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\Cursor.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\instruction.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\menu.png">
       <Filter>pictures</Filter>
     </Image>
   </ItemGroup>

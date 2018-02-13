@@ -2,50 +2,39 @@
 //  Assignment1:        Drachen kamper
 //  Student Name:       Bryan Boh, Naing Ye Yint Zaw, Min Thet Naung
 //  Student Number:     S10171537F, S10167279K, S10167248B
+
 #include "enemy.h"
-using namespace enemyNS;
+#include "playership.h"
 
 //=============================================================================
 // default constructor
 //=============================================================================
-Enemy::Enemy() : Entity()
+Enemy::Enemy(/*int in_x, int in_y, int in_vx, int in_vy*/) : Entity()
+
 {
-	spriteData.scale = 0.3;
-	spriteData.width = WIDTH;           // size of enemy
-	spriteData.height = HEIGHT;
-	spriteData.x = X;                   // location on screen
-	spriteData.y = Y;
-	spriteData.rect.bottom = HEIGHT;    // rectangle to select parts of an image
-	spriteData.rect.right = WIDTH;
-	edge.top = EDGE_TOP;             // ROTATED_BOX collision edges
-	edge.bottom = EDGE_BOTTOM;
-	edge.left = EDGE_LEFT;
-	edge.right = EDGE_RIGHT;
-	velocity.x = 0;
-	velocity.y = 0;
-	frameDelay = ENEMY_ANIMATION_DELAY;
-	startFrame = ENEMY_START_FRAME;     // first frame of animation
-	endFrame = ENEMY_END_FRAME;     // last frame of animation
+	spriteData.scale = 0.5;
+	spriteData.width = EnemyNS::WIDTH;           // size of Ship1
+	spriteData.height = EnemyNS::HEIGHT;
+	spriteData.x = EnemyNS::X;                   // location on screen
+	spriteData.y = EnemyNS::Y;
+	spriteData.rect.bottom = EnemyNS::HEIGHT;    // rectangle to select parts of an image
+	spriteData.rect.right = EnemyNS::WIDTH;
+	oldX = EnemyNS::X;
+	oldY = EnemyNS::Y;
+	oldAngle = 0.0f;
+	rotation = 0.0f;
+	velocity.x = 0;                             // velocity X
+	velocity.y = 0;                             // velocity Y
 	currentFrame = startFrame;
-	radius = WIDTH / 2.0;
-	collisionType = entityNS::ROTATED_BOX;
-	mass = enemyNS::MASS;
-	healthcomponent.setmhealth(2);
+	mass = EnemyNS::MASS;
+	collisionType = entityNS::CIRCLE;
+	radius = EnemyNS::WIDTH / 2.0;
 }
 
-bool Enemy::isbulletcool()
-{
-	return bulletcool;
-}
 
-void Enemy::bulletfired(bool t)
-{
-	bulletcool = t;
-	bulletcooldown = enemyNS::BULLETCOOLDOWN;
-}
 
 //=============================================================================
-// Initialize the Enemy.
+// Initialize the Ship.
 // Post: returns true if successful, false if failed
 //=============================================================================
 bool Enemy::initialize(Game *gamePtr, int width, int height, int ncols,
@@ -55,11 +44,11 @@ bool Enemy::initialize(Game *gamePtr, int width, int height, int ncols,
 }
 
 //=============================================================================
-// draw the enemy
+// draw the ENEMY
 //=============================================================================
 void Enemy::draw()
 {
-	Image::draw();              // draw enemy
+	Image::draw();
 }
 
 //=============================================================================
@@ -69,42 +58,65 @@ void Enemy::draw()
 //=============================================================================
 void Enemy::update(float frameTime)
 {
+
 	Entity::update(frameTime);
-	spriteData.x += frameTime * velocity.x;         // move player along X 
+	//oldX = spriteData.x;                        // save current position
+	//oldY = spriteData.y;
+	//oldAngle = spriteData.angle;
 
-													// Bounce off walls
-	if (spriteData.x > GAME_WIDTH - enemyNS::WIDTH)    // if hit right screen edge
-	{
-		spriteData.x = GAME_WIDTH - enemyNS::WIDTH;    // position at right screen edge
-		velocity.x = -velocity.x;                   // reverse X direction
-	}
-	else if (spriteData.x < 0)                    // else if hit left screen edge
-	{
-		spriteData.x = 0;                           // position at left screen edge
-		velocity.x = -velocity.x;                   // reverse X direction
-	}
+	dx = playershipNS::X - EnemyNS::X;
+	dy = playershipNS::Y - EnemyNS::Y;
+	angle = atan2(dy, dx);
 
-	spriteData.y += frameTime * velocity.y;         // move player along y 
+	vx = cos(angle) * EnemyNS::SPEED;
+	vy = sin(angle) * EnemyNS::SPEED;
 
-													// Bounce off walls
-	if (spriteData.y > GAME_HEIGHT - enemyNS::HEIGHT)    // if hit top screen edge
+	/*while (spriteData.angle != angle)
 	{
-		spriteData.y = GAME_HEIGHT - enemyNS::HEIGHT;    // position at top screen edge
-		velocity.y = -velocity.y;                   // reverse y direction
-	}
-	else if (spriteData.y < 0)                    // else if hit bottom screen edge
-	{
-		spriteData.y = 0;                           // position at bottom screen edge
-		velocity.y = -velocity.y;                   // reverse y direction
-	}
-	spriteData.y += velocity.y * frameTime;
+	spriteData.angle += frameTime * EnemyNS::ROTATION_RATE;  // rotate the ship
+	}*/
+	spriteData.angle += frameTime * EnemyNS::ROTATION_RATE;
+	spriteData.x += frameTime * vx;         // move ship along X 
+	spriteData.y += frameTime * vy;         // move ship along Y   
 
-	if (bulletcool == true)
-	{
-		bulletcooldown--;
-		if (bulletcooldown <= 0)
-		{
-			bulletcool = false;
-		}
-	}
+											/*velocity.y += sin(spriteData.angle)*playershipNS::SPEED;
+											velocity.x += cos(spriteData.angle)*playershipNS::SPEED;
+											spriteData.x += frameTime *velocity.x;         // move ship along X
+											spriteData.y += frameTime *velocity.y;         // move ship along Y*/
+
+											// Wrap around screen edge
+	if (spriteData.x > GAME_WIDTH)              // if off right screen edge
+		spriteData.x = -EnemyNS::WIDTH;          // position off left screen edge
+	else if (spriteData.x < -EnemyNS::WIDTH)     // else if off left screen edge
+		spriteData.x = GAME_WIDTH;              // position off right screen edge
+	if (spriteData.y > GAME_HEIGHT)             // if off bottom screen edge
+		spriteData.y = -EnemyNS::HEIGHT;         // position off top screen edge
+	else if (spriteData.y < -EnemyNS::HEIGHT)    // else if off top screen edge
+		spriteData.y = GAME_HEIGHT;             // position off bottom screen edge
+
+}
+
+//=============================================================================
+// damage
+//=============================================================================
+//void Ship::damage(WEAPON weapon)
+//{
+//shieldOn = true;
+//}
+
+
+// constructor
+
+/*inline Enemy::Enemy(/*int in_x, int in_y, int in_vx, int in_vy)
+{
+x = in_x;
+y = in_y;
+vx = in_vx;
+vy = in_vy;
+}*/
+
+bool Enemy::IsInitialized()
+{
+	//Are we initialized (have a texture and sprite)
+	return initialized;
 }
