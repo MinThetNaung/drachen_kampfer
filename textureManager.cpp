@@ -12,12 +12,12 @@
 //=============================================================================
 TextureManager::TextureManager()
 {
-    texture = NULL;
-    width = 0;
-    height = 0;
-    file = NULL;
-    graphics = NULL;
-    initialized = false;            // set true when successfully initialized
+	texture = NULL;
+	width = 0;
+	height = 0;
+	file = NULL;
+	graphics = NULL;
+	initialized = false;            // set true when successfully initialized
 }
 
 //=============================================================================
@@ -25,7 +25,7 @@ TextureManager::TextureManager()
 //=============================================================================
 TextureManager::~TextureManager()
 {
-    SAFE_RELEASE(texture);
+	SAFE_RELEASE(texture);
 }
 
 //=============================================================================
@@ -34,20 +34,20 @@ TextureManager::~TextureManager()
 //=============================================================================
 bool TextureManager::initialize(Graphics *g, const char *f)
 {
-    try{
-        graphics = g;                       // the graphics object
-        file = f;                           // the texture file
+	try {
+		graphics = g;                       // the graphics object
+		file = f;                           // the texture file
 
-        hr = graphics->loadTexture(file, TRANSCOLOR, width, height, texture);
-        if (FAILED(hr))
-        {
-            SAFE_RELEASE(texture);
-            return false;
-        }
-    }
-    catch(...) {return false;}
-    initialized = true;                    // set true when successfully initialized
-    return true;
+		hr = graphics->loadTexture(file, graphicsNS::TRANSCOLOR, width, height, texture);
+		if (FAILED(hr))
+		{
+			SAFE_RELEASE(texture);
+			return false;
+		}
+	}
+	catch (...) { return false; }
+	initialized = true;                    // set true when successfully initialized
+	return true;
 }
 
 //=============================================================================
@@ -55,9 +55,9 @@ bool TextureManager::initialize(Graphics *g, const char *f)
 //=============================================================================
 void TextureManager::onLostDevice()
 {
-    if (!initialized)
-        return;
-    SAFE_RELEASE(texture);
+	if (!initialized)
+		return;
+	SAFE_RELEASE(texture);
 }
 
 //=============================================================================
@@ -65,9 +65,9 @@ void TextureManager::onLostDevice()
 //=============================================================================
 void TextureManager::onResetDevice()
 {
-    if (!initialized)
-        return;
-    graphics->loadTexture(file, TRANSCOLOR, width, height, texture);
+	if (!initialized)
+		return;
+	graphics->loadTexture(file, graphicsNS::TRANSCOLOR, width, height, texture);
 }
 
 

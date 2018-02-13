@@ -11,17 +11,59 @@
 //-----------------------------------------------
 // Useful macros
 //-----------------------------------------------
-// Safely delete pointer referenced item
-#define SAFE_DELETE(ptr)       { if (ptr) { delete (ptr); (ptr)=NULL; } }
 // Safely release pointer referenced item
-#define SAFE_RELEASE(ptr)      { if(ptr) { (ptr)->Release(); (ptr)=NULL; } }
+template <typename T>
+inline void safeRelease(T& ptr)
+{
+	if (ptr)
+	{
+		ptr->Release();
+		ptr = NULL;
+	}
+}
+#define SAFE_RELEASE safeRelease            // for backward compatiblility
+
+// Safely delete pointer referenced item
+template <typename T>
+inline void safeDelete(T& ptr)
+{
+	if (ptr)
+	{
+		delete ptr;
+		ptr = NULL;
+	}
+}
+#define SAFE_DELETE safeDelete              // for backward compatiblility
+
 // Safely delete pointer referenced array
-#define SAFE_DELETE_ARRAY(ptr) { if(ptr) { delete [](ptr); (ptr)=NULL; } }
+template <typename T>
+inline void safeDeleteArray(T& ptr)
+{
+	if (ptr)
+	{
+		delete[] ptr;
+		ptr = NULL;
+	}
+}
+#define SAFE_DELETE_ARRAY safeDeleteArray   // for backward compatiblility
+
 // Safely call onLostDevice
-#define SAFE_ON_LOST_DEVICE(ptr)    { if(ptr) { ptr->onLostDevice(); } }
+template <typename T>
+inline void safeOnLostDevice(T& ptr)
+{
+	if (ptr)
+		ptr->onLostDevice();
+}
+#define SAFE_ON_LOST_DEVICE safeOnLostDevice    // for backward compatiblility
+
 // Safely call onResetDevice
-#define SAFE_ON_RESET_DEVICE(ptr)   { if(ptr) { ptr->onResetDevice(); } }
-#define TRANSCOLOR  SETCOLOR_ARGB(0,255,0,255)  // transparent color (magenta)
+template <typename T>
+inline void safeOnResetDevice(T& ptr)
+{
+	if (ptr)
+		ptr->onResetDevice();
+}
+#define SAFE_ON_RESET_DEVICE safeOnResetDevice  // for backward compatiblility
 
 //-----------------------------------------------
 //                  Constants
@@ -60,6 +102,7 @@ const char CURSOR_IMAGE[] = "pictures\\Cursor.png";
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
 // it would be possible to save and restore key mappings from a data file.
+const UCHAR CONSOLE_KEY = '`';         // ` key
 const UCHAR ESC_KEY = VK_ESCAPE;       // escape key
 const UCHAR ALT_KEY = VK_MENU;         // Alt key
 const UCHAR ENTER_KEY = VK_RETURN;       // Enter key
@@ -71,6 +114,8 @@ const UCHAR ENTER_KEY = VK_RETURN;       // Enter key
 #define VK_KEY_O    0x4F
 #define VK_KEY_P    0x50
 #define VK_KEY_L    0x4C
+#define VK_KEY_DOWN 
+#define VK_KEY_UP
 										 // weapon types
 enum WEAPON { TORPEDO, SHIP, PLANET };
 enum State { STATE_NORMAL, STATE_BULLET, STATE_MISSILE, STATE_SPECIAL };

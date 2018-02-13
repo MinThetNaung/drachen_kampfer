@@ -125,6 +125,7 @@
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
@@ -138,12 +139,14 @@
     <ClCompile Include="drachen.cpp" />
     <ClCompile Include="reflector.cpp" />
     <ClCompile Include="special.cpp" />
+    <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attack.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="console.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="playership.h" />
     <ClInclude Include="drachen.h" />
     <ClInclude Include="special.h" />
+    <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <ItemGroup>
