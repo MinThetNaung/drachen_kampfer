@@ -22,8 +22,8 @@ namespace playershipNS
 	const int Y = GAME_HEIGHT / 2 - HEIGHT / 2;
 	const float ROTATION_RATE = (float)2 * PI; // radians per second
 	const float SPEED = 10;                // 100 pixels per second
-	const float MAXSPEED = 50;
-	const float MINSPEED = -50;
+	const float MAXSPEED = 200;
+	const float MINSPEED = -200;
 	const float MASS = 300.0f;              // mass
 	const int   TEXTURE_COLS = 1;           // texture has 8 columns
 	const int   SHIP1_START_FRAME = 0;      // ship1 starts at frame 0
@@ -39,7 +39,7 @@ namespace playershipNS
 	const int REFLECTORCOOLDOWN = 10000;
 	const int SPECIALCOOLDOWN = 50000;
 	const float BULLETDAMAGE = 5;
-	const float BULLETSPEED = 50;
+	const float BULLETSPEED = 300;
 	const float MISSILEDAMAGE = 10;
 	const float MISSILESPEED = 30;
 	const float SPECIALDAMAGE = 50;

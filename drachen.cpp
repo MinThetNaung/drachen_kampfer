@@ -270,7 +270,10 @@ void Drachen::update()
 	{
 		playership1.state = STATE_NORMAL;
 	}
-
+	if (playership1.state == STATE_REFLECT)
+	{
+		playership1.state = STATE_NORMAL;
+	}
 
 	//enemy movement
 	enemy0.update(frameTime);
@@ -532,6 +535,15 @@ void Drachen::collisions()
 {
 
 	VECTOR2 collisionVector;
+	for (unsigned e = 0; e < Preflectorv.size(); e++)
+	{
+		Reflector &tempreflector = Preflectorv[e];
+		Reflector *tmpReflectorPointer = &tempreflector;
+		if (playership1.collidesWith(tempreflector, collisionVector))
+		{
+			playership1.state = STATE_REFLECT;
+		}
+	}
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
 		Bullet &tempbullet = Pbulletv[d];
@@ -549,6 +561,8 @@ void Drachen::collisions()
 			}
 
 		}
+
+
 		//reflect collide
 		for (unsigned e = 0; e < Preflectorv.size(); e++)
 		{
