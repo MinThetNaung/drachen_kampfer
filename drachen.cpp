@@ -385,6 +385,7 @@ void Drachen::update()
 				Preflectorv.erase(Preflectorv.begin() + d);
 				tmpReflectorPointer = NULL;
 			}
+			return;
 		}
 
 	}
@@ -405,7 +406,7 @@ void Drachen::update()
 				Preflectorv.erase(Preflectorv.begin() + d);
 				tmpReflectorPointer = NULL;
 			}
-
+			return;
 
 		}
 
@@ -426,7 +427,7 @@ void Drachen::update()
 				Preflectorv.erase(Preflectorv.begin() + d);
 				tmpReflectorPointer = NULL;
 			}
-
+			return;
 		}
 	}
 	// if background image off screen top
@@ -444,7 +445,7 @@ void Drachen::update()
 				Preflectorv.erase(Preflectorv.begin() + d);
 				tmpReflectorPointer = NULL;
 			}
-
+			return;
 			/*	for (unsigned d = 0; d < Pbulletv.size(); d++)
 			{
 
