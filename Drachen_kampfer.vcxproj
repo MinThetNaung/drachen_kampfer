@@ -172,6 +172,7 @@
     <ResourceCompile Include="Drachen_kampfer.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="pictures\bg_version2.png" />
     <Image Include="pictures\bullet.png" />
     <Image Include="pictures\credit.png" />
     <Image Include="pictures\Cursor.png" />
@@ -180,8 +181,9 @@
     <Image Include="pictures\menu.png" />
     <Image Include="pictures\missile.png" />
     <Image Include="pictures\orion.jpg" />
-    <Image Include="pictures\bg_version1.png" />
-    <Image Include="pictures\textures.png" />
+    <Image Include="pictures\reflector.png" />
+    <Image Include="pictures\ship.png" />
+    <Image Include="pictures\special.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

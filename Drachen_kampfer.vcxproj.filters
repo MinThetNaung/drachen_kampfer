@@ -156,12 +156,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pictures\textures.png">
-      <Filter>pictures</Filter>
-    </Image>
-    <Image Include="pictures\bg_version1.png">
-      <Filter>pictures</Filter>
-    </Image>
     <Image Include="pictures\orion.jpg">
       <Filter>Resource Files</Filter>
     </Image>
@@ -184,6 +178,18 @@
       <Filter>pictures</Filter>
     </Image>
     <Image Include="pictures\menu.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\bg_version2.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\reflector.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\ship.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\special.png">
       <Filter>pictures</Filter>
     </Image>
   </ItemGroup>
