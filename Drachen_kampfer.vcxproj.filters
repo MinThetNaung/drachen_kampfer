@@ -174,5 +174,17 @@
     <Image Include="pictures\missile.png">
       <Filter>pictures</Filter>
     </Image>
+    <Image Include="pictures\credit.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\Cursor.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\instruction.png">
+      <Filter>pictures</Filter>
+    </Image>
+    <Image Include="pictures\menu.png">
+      <Filter>pictures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
