@@ -83,6 +83,8 @@ private:
 	playership    playership1;           // spaceships
 	Image   background;         // backdrop image
 	Enemy enemy0;
+	Enemy enemy1;
+	Enemy enemy2;
 	Bullet bullet;
 	Missile missile;
 	Reflector reflector;

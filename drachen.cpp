@@ -137,6 +137,24 @@ void Drachen::initialize(HWND hwnd)
 	enemy0.setY(GAME_HEIGHT - EnemyNS::HEIGHT);
 	enemy0.setVelocity(VECTOR2(-EnemyNS::SPEED, -EnemyNS::SPEED)); // VECTOR2(X, Y)
 
+	if (!enemy1.initialize(this, EnemyNS::WIDTH, EnemyNS::HEIGHT, 0, &enemyTextures))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
+	enemy1.setFrames(EnemyNS::ENEMY_START_FRAME, EnemyNS::ENEMY_END_FRAME);
+	enemy1.setCurrentFrame(EnemyNS::ENEMY_START_FRAME);
+	// Start enemy in the middle of left
+	enemy1.setX(GAME_WIDTH / 2 - EnemyNS::WIDTH);
+	enemy1.setY(GAME_HEIGHT / 2 - EnemyNS::HEIGHT);
+	enemy1.setVelocity(VECTOR2(-EnemyNS::SPEED, -EnemyNS::SPEED)); // VECTOR2(X, Y)
+
+	if (!enemy2.initialize(this, EnemyNS::WIDTH, EnemyNS::HEIGHT, 0, &enemyTextures))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
+	enemy2.setFrames(EnemyNS::ENEMY_START_FRAME, EnemyNS::ENEMY_END_FRAME);
+	enemy2.setCurrentFrame(EnemyNS::ENEMY_START_FRAME);
+	// Start enemy in the middle of left
+	enemy2.setX(GAME_WIDTH / 3 - EnemyNS::WIDTH);
+	enemy2.setY(GAME_HEIGHT / 3 - EnemyNS::HEIGHT);
+	enemy2.setVelocity(VECTOR2(-EnemyNS::SPEED, -EnemyNS::SPEED)); // VECTOR2(X, Y)
+
 	return;
 }
 
@@ -256,6 +274,8 @@ void Drachen::update()
 
 	//enemy movement
 	enemy0.update(frameTime);
+	enemy1.update(frameTime);
+	enemy2.update(frameTime);
 
 
 	//Player skills
@@ -727,6 +747,8 @@ void Drachen::render()
 	}
 
 	enemy0.draw();
+	enemy1.draw();
+	enemy2.draw();
 	playership1.draw();
 	graphics->spriteEnd();                  // end drawing sprites
 }
