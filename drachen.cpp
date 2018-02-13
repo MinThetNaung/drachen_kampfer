@@ -127,13 +127,15 @@ void Drachen::initialize(HWND hwnd)
 																				 // ship2
 
 																				 // enemy
-	if (!enemy.initialize(this, enemyNS::WIDTH, enemyNS::HEIGHT, 0, &enemyTextures))
+																				 // enemy
+	if (!enemy0.initialize(this, EnemyNS::WIDTH, EnemyNS::HEIGHT, 0, &enemyTextures))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing enemy"));
-	enemy.setFrames(enemyNS::ENEMY_START_FRAME, enemyNS::ENEMY_END_FRAME);
-	enemy.setCurrentFrame(enemyNS::ENEMY_START_FRAME);
+	enemy0.setFrames(EnemyNS::ENEMY_START_FRAME, EnemyNS::ENEMY_END_FRAME);
+	enemy0.setCurrentFrame(EnemyNS::ENEMY_START_FRAME);
 	// Start enemy in the middle of left
-	enemy.setX(GAME_WIDTH / 4 - enemyNS::WIDTH);
-	enemy.setY(GAME_HEIGHT / 4 - enemyNS::HEIGHT);
+	enemy0.setX(GAME_WIDTH - EnemyNS::WIDTH);
+	enemy0.setY(GAME_HEIGHT - EnemyNS::HEIGHT);
+	enemy0.setVelocity(VECTOR2(-EnemyNS::SPEED, -EnemyNS::SPEED)); // VECTOR2(X, Y)
 
 	return;
 }
@@ -152,7 +154,7 @@ void Drachen::update()
 
 	//planet.update(frameTime);
 	playership1.update(frameTime);
-	enemy.update(frameTime);
+
 	//Player skills
 	if (input->isKeyDown(VK_KEY_I))  //I         // if move right FSM forward declaration
 	{
@@ -250,6 +252,12 @@ void Drachen::update()
 	{
 		playership1.state = STATE_NORMAL;
 	}
+
+
+	//enemy movement
+	enemy0.update(frameTime);
+
+
 	//Player skills
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
@@ -632,6 +640,34 @@ void Drachen::collisions()
 	ship2.bounce(collisionVector*-1, ship1);
 	ship2.damage(SHIP);
 	}*/
+
+	/*/enemy Collision
+	VECTOR2 collisionVector;
+	// if collision between player and enemy
+	if (playership1.collidesWith(enemy0, collisionVector))
+	{
+	// player bounce off
+	playership1.bounce(collisionVector, enemy0);
+	playership1.damage(ENEMY);
+	}
+	// if collision between enemy and weapons
+	if (enemy0.collidesWith(bullet, collisionVector))
+	{
+	delete &enemy0;
+	delete &bullet;
+	}
+	if (enemy0.collidesWith(missile, collisionVector))
+	{
+	delete &enemy0;
+	}
+	if (enemy0.collidesWith(reflector, collisionVector))
+	{
+	enemy0.bounce(collisionVector, reflector);
+	}
+	if (enemy0.collidesWith(special, collisionVector))
+	{
+	delete &enemy0;
+	}*/
 }
 
 //=============================================================================
@@ -642,9 +678,6 @@ void Drachen::render()
 
 
 	graphics->spriteBegin();                // begin drawing sprites
-
-
-
 
 	float x = background.getX();
 	float y = background.getY();
@@ -670,7 +703,7 @@ void Drachen::render()
 	background.setY(y);      // restore y position
 
 
-	enemy.draw();
+
 	for (unsigned d = 0; d < Pbulletv.size(); d++)
 	{
 		Bullet &tempbullet = Pbulletv[d];
@@ -693,7 +726,7 @@ void Drachen::render()
 		tempspecial.draw();
 	}
 
-
+	enemy0.draw();
 	playership1.draw();
 	graphics->spriteEnd();                  // end drawing sprites
 }

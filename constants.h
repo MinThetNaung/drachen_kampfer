@@ -117,6 +117,6 @@ const UCHAR ENTER_KEY = VK_RETURN;       // Enter key
 #define VK_KEY_DOWN 
 #define VK_KEY_UP
 										 // weapon types
-enum WEAPON { TORPEDO, SHIP, PLANET };
+enum WEAPON { ENEMY, PLAYERSHIP, BULLET, MISSILE, SPECIAL };
 enum State { STATE_NORMAL, STATE_BULLET, STATE_MISSILE, STATE_SPECIAL };
 #endif

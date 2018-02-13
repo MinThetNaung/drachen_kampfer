@@ -19,6 +19,8 @@
 #include "Missile.h"
 #include "reflector.h"
 #include "special.h"
+#include <random>
+
 namespace drachenNS
 {
 	const char FONT[] = "Arial Bold";  // font
@@ -80,7 +82,7 @@ private:
 	Image cursor;
 	playership    playership1;           // spaceships
 	Image   background;         // backdrop image
-	Enemy enemy;
+	Enemy enemy0;
 	Bullet bullet;
 	Missile missile;
 	Reflector reflector;
